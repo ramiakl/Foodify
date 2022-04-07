@@ -8,6 +8,8 @@ $expiration_date = $_POST["date"];
 $location = $_POST["location"];
 $weight = $_POST["weight"];
 
+$response = [];
+$response["status"] = "Completed!";
 
 $json_response = json_encode($response);
 echo($json_response);

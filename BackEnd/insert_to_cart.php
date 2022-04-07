@@ -7,6 +7,8 @@ $item = $_POST["item"];
 $price = $_POST["price"];
 $weight = $_POST["weight"];
 
+$response = [];
+$response["status"] = "Completed!";
 
 $json_response = json_encode($response);
 echo($json_response);
