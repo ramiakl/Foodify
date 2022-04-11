@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/box.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.268" />
+        <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/login.xml" value="0.2546875" />
       </map>
     </option>
   </component>
