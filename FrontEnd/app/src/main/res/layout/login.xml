@@ -43,7 +43,7 @@
         app:srcCompat="@drawable/hi" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log In"
@@ -118,6 +118,7 @@
         android:onClick="signup"
         android:text="SignUp"
         android:textColor="#211E97"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,11 +2,13 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ListView list;
     ArrayList<String> items;
     ArrayAdapter<String> adapter;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,4 +41,22 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
     }
+
+    public void tocookbook(View view){
+        intent = new Intent(getApplicationContext(), cookbook.class);
+        startActivity(intent);
+    }
+    public void tocart(View view){
+        intent = new Intent(getApplicationContext(), cookbook.class);
+        startActivity(intent);
+    }
+    public void toadd(View view){
+        intent = new Intent(getApplicationContext(), cookbook.class);
+        startActivity(intent);
+    }
+    public void toprofile(View view){
+        intent = new Intent(getApplicationContext(), cookbook.class);
+        startActivity(intent);
+    }
+
 }

@@ -85,19 +85,21 @@
         app:srcCompat="@drawable/pantry" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/cart"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:onClick="tocart"
         app:layout_constraintBottom_toBottomOf="@+id/divider3"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/list"
         app:srcCompat="@drawable/cart" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/add"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:onClick="toadd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,26 +107,29 @@
         app:srcCompat="@drawable/add" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/cookbook"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:onClick="tocookbook"
         app:layout_constraintBottom_toBottomOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="@+id/divider3"
         app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/add"
         app:layout_constraintTop_toBottomOf="@+id/list"
         app:layout_constraintVertical_bias="0.52"
         app:srcCompat="@drawable/cookbook" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:onClick="toprofile"
         app:layout_constraintBottom_toBottomOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list"
+        app:layout_constraintVertical_bias="0.52"
         app:srcCompat="@drawable/profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
