@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".Cart">
 
+    <ListView
+        android:id="@+id/list_cart"
+        android:layout_width="409dp"
+        android:layout_height="475dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <TextView
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Cart"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="34sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.136" />
+
+    <EditText
+        android:id="@+id/search_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Search"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="88dp"
+        android:onClick="search"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toEndOf="@+id/search_tab"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757"
+        app:srcCompat="@drawable/search" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#21E1F3"
+        android:backgroundTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:srcCompat="@drawable/pantry" />
+
+    <ImageView
+        android:id="@+id/cart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="tocart"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:srcCompat="@drawable/cart" />
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="toadd"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:srcCompat="@drawable/add" />
+
+    <ImageView
+        android:id="@+id/cookbook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="tocookbook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/divider3"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toEndOf="@+id/add"
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:srcCompat="@drawable/cookbook" />
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="toprofile"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:srcCompat="@drawable/profile" />
 </androidx.constraintlayout.widget.ConstraintLayout>
