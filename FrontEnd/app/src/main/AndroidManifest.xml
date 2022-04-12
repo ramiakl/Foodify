@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodify">
         <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Add"
+            android:exported="false" />
+        <activity
             android:name=".Cart"
             android:exported="false" />
         <activity

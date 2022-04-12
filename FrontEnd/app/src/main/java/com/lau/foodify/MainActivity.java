@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -47,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void tocart(View view){
-        intent = new Intent(getApplicationContext(), cookbook.class);
+        intent = new Intent(getApplicationContext(), Cart.class);
         startActivity(intent);
     }
     public void toadd(View view){
-        intent = new Intent(getApplicationContext(), cookbook.class);
+        intent = new Intent(getApplicationContext(), Add.class);
         startActivity(intent);
     }
     public void toprofile(View view){
-        intent = new Intent(getApplicationContext(), cookbook.class);
+        intent = new Intent(getApplicationContext(), Profile.class);
         startActivity(intent);
     }
 
