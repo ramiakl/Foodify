@@ -2,7 +2,8 @@
 
 include("db_info.php");
 
-$query = $mysqli->prepare("SELECT * FROM pantry;");
+$item = $_POST["item"];
+$query = $mysqli->prepare("SELECT * FROM pantry Where item_name = item ;");
 $query->execute();
 
 $array = $query->get_result();
