@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.136" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/search_tab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -48,13 +48,14 @@
         app:layout_constraintVertical_bias="0.757" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/search_icon"
         android:layout_width="44dp"
         android:layout_height="45dp"
+        android:onClick="search"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toEndOf="@+id/search_tab"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.757"
         app:srcCompat="@drawable/search" />

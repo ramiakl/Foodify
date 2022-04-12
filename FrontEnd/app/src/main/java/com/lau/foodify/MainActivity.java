@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> items;
     ArrayAdapter<String> adapter;
     Intent intent;
+    EditText search;
+    ImageView search_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         list.setAdapter(adapter);
 
+        search = (EditText) findViewById(R.id.search_tab);
+        search_icon = (ImageView) findViewById(R.id.search_icon);
+
     }
 
     public void tocookbook(View view){
@@ -58,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
     public void toprofile(View view){
         intent = new Intent(getApplicationContext(), Profile.class);
         startActivity(intent);
+    }
+
+    public void search (View view){
+
+        String item = search.getText().toString();
+
+        // connect to api
+        // reset adapter
     }
 
 }
