@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView list;
     ArrayList<String> items;
     ArrayAdapter<String> adapter;
     Intent intent;
