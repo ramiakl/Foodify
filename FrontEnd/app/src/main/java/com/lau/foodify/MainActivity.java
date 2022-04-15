@@ -3,19 +3,17 @@ package com.lau.foodify;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.lau.foodify.databinding.GridListBinding;
+import com.lau.foodify.databinding.MainActivityBinding;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,23 +24,28 @@ public class MainActivity extends AppCompatActivity {
     EditText search;
     ImageView search_icon;
 
+    MainActivityBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pantry);
+        setContentView(R.layout.main_activity);
 
-        list = (ListView) findViewById(R.id.list);
 
-        SpannableStringBuilder builder = new SpannableStringBuilder();
+        binding = MainActivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        String red = "Expiring in 2 days";
-        SpannableString redSpannable= new SpannableString(red);
-        redSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, red.length(), 0);
+        String[] food = {"Burger","Pizza","Fasoulya","Mjadra",
+                "Cesear salad","Chicken parm","Pasta","Nutella","Crepe","Fish"};
+        int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,
+                R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,};
+        String[] weight = {"200 g", "10 Kg","1 Jar","10 pieces","1 can","100 g","10 boxes","100 g","10 min","10 min"};
+        String[] location = {"Fridge","1st shelf","Fridge","1st shelf","Fridge","1st shelf","Fridge","1st shelf","Fridge","1st shelf"};
+        String[] date = {"Expires in 2 days", "Expires in 1 year","Expires in 2 days", "Expires in 1 year","Expires in 2 days", "Expires in 1 year","Expires in 2 days", "Expires in 1 year","Expires in 2 days", "Expires in 1 year",};
 
-        items = new ArrayList<String>(Arrays.asList("\nGround beef\t\t\t\t1 kg \n\n"+redSpannable+"\t\t\t\tFridge\n", "\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n","\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n","\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n"));
+        GridAdapterPantry gridAdapter = new GridAdapterPantry(this,food,weight,location,date,flowerImages);
+        binding.list.setAdapter(gridAdapter);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        list.setAdapter(adapter);
 
         search = (EditText) findViewById(R.id.search_tab);
         search_icon = (ImageView) findViewById(R.id.search_icon);
