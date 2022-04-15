@@ -5,26 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
-        android:id="@+id/grid_image"
+        android:id="@+id/background"
         android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/item_name"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@drawable/background" />
 
+    <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.126"
+        tools:srcCompat="@drawable/burger" />
 
     <TextView
         android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Joe"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Burger"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.531" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cook Time:"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_name"
+        app:layout_constraintVertical_bias="0.165" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

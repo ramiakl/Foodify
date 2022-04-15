@@ -2,39 +2,34 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import com.lau.foodify.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class cookbook extends AppCompatActivity {
 
-    ListView list;
-    ArrayList<String> items;
-    ArrayAdapter<String> adapter;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cookbook);
+        setContentView(R.layout.activity_main);
 
-        list = (ListView) findViewById(R.id.list);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        SpannableStringBuilder builder = new SpannableStringBuilder();
+        String[] flowerName = {"Burger","Pizza","Fasoulya","Mjadra",
+                "Cesear salad","Chicken parm","Pasta","Nutella","Crepe","Fish"};
+        int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,
+                R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger,};
+        String[] time = {"10 min", "10 min","10 min","10 min","10 min","10 min","10 min","10 min","10 min","10 min"};
 
-        String red = "Expiring in 2 days";
-        SpannableString redSpannable = new SpannableString(red);
-        redSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, red.length(), 0);
+        GridAdapter gridAdapter = new GridAdapter(this,flowerName,time,flowerImages);
+        binding.gridView.setAdapter(gridAdapter);
 
-        items = new ArrayList<String>(Arrays.asList("\nGround beef\t\t\t\t1 kg \n\n" + redSpannable + "\t\t\t\tFridge\n", "\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n", "\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n", "\nGround beef\t\t\t\t1 kg \n\nExpiring in 2 days\t\t\t\tFridge\n"));
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        list.setAdapter(adapter);
     }
 }

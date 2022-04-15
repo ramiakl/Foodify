@@ -11,14 +11,16 @@ import android.widget.TextView;
 public class GridAdapter extends BaseAdapter {
     Context context;
     String[] recipe;
+    String[] cooktime;
     int[] image;
 
     LayoutInflater inflater;
 
-    public GridAdapter(Context context, String[] recipe, int[] image) {
+    public GridAdapter(Context context, String[] recipe,String[] cooktime, int[] image) {
         this.context = context;
         this.recipe = recipe;
         this.image = image;
+        this.cooktime = cooktime;
     }
 
     @Override
@@ -50,10 +52,12 @@ public class GridAdapter extends BaseAdapter {
 
         ImageView imageView = view.findViewById(R.id.grid_image);
         TextView textView = view.findViewById(R.id.item_name);
+        TextView time = view.findViewById(R.id.time);
 
         imageView.setImageResource(image[i]);
         textView.setText(recipe[i]);
+        time.setText(cooktime[i]);
 
-        return null;
+        return view;
     }
 }
