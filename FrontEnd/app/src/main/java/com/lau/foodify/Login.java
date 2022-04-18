@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,9 +28,10 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
-    String email , password;
+    String email , password, url;
     TextView error_password, error_email;
     Boolean exist;
+    PostRequest post;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -36,7 +40,7 @@ public class Login extends AppCompatActivity {
             //The method take String parameters and send data to the received url.
 
             //Storing data in String objects
-            String name = params[0];
+            String email = params[0];
             String password = params[1];
             String str_url = params[2];
             String result = "";
@@ -54,7 +58,7 @@ public class Login extends AppCompatActivity {
                 BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
 
                 // Setting the variables to be sent to the URL
-                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
+                String post_data = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(email, "UTF-8")+"&"
                         +URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8");
 
                 br.write(post_data); //Writing and sending data.
@@ -74,21 +78,31 @@ public class Login extends AppCompatActivity {
                     line = reader.readLine(); //Concatenate each line
                 }
 
-                if(line.equalsIgnoreCase("Yes")){
-                    exist = true;
-                }
                 //Catching exceptions
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return result;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            try {
+
+                Log.i("String", s);
+                JSONObject obj = new JSONObject(s); //Creating a JSON object.
+                String status = obj.getString("status");
+
+                if (status.equalsIgnoreCase("YES")) {
+                    exist = true;
+                }
+
+            }catch(Exception e){
+                    Log.i("exeOnPost", e.getMessage());
+            }
         }
 
         @Override
@@ -140,6 +154,10 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
+            url = "http://192.168.0.102/MobileFinalProject/BackEnd/login.php";
+            post = new PostRequest();
+            post.execute(email,password,url);
+
             if(exist){
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
