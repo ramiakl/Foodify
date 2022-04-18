@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity {
                     line = reader.readLine(); //Concatenate each line
                 }
 
-                if(line.equalsIgnoreCase("Completed")){
+                if(line.equalsIgnoreCase("Yes")){
                     exist = true;
                 }
                 //Catching exceptions
@@ -140,8 +140,14 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+            if(exist){
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this,"User does not exist please Sign up",Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
