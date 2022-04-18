@@ -6,6 +6,7 @@ $db_pass = null;
 $db_name = "mobilefinalproject";
 
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name); 
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if(mysqli_connect_errno()){
     die("Conenction Failed!");

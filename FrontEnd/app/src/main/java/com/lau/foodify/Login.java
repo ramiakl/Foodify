@@ -28,7 +28,7 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
-    String email , password, url;
+    String name , password, url;
     TextView error_password, error_email;
     Boolean exist;
     PostRequest post;
@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
             //The method take String parameters and send data to the received url.
 
             //Storing data in String objects
-            String email = params[0];
+            String name = params[0];
             String password = params[1];
             String str_url = params[2];
             String result = "";
@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
                 BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
 
                 // Setting the variables to be sent to the URL
-                String post_data = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(email, "UTF-8")+"&"
+                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
                         +URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8");
 
                 br.write(post_data); //Writing and sending data.
@@ -93,11 +93,12 @@ public class Login extends AppCompatActivity {
             try {
 
                 Log.i("String", s);
-                JSONObject obj = new JSONObject(s); //Creating a JSON object.
-                String status = obj.getString("status");
-
-                if (status.equalsIgnoreCase("YES")) {
+                String[] second_part = s.split(":");
+                String status = second_part[1];
+                Log.i("status", "" +status.equalsIgnoreCase("\"YES\"}"));
+                if (status.equalsIgnoreCase("\"YES\"}")) {
                     exist = true;
+                    Log.i("exist:", " "+ exist);
                 }
 
             }catch(Exception e){
@@ -137,15 +138,18 @@ public class Login extends AppCompatActivity {
 
     public void login (View view){
 
-        email = email_entry.getText().toString();
+        name = email_entry.getText().toString();
         password = password_entry.getText().toString();
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/login.php";
+        post = new PostRequest();
+        post.execute(name,password,url);
 
-        if(email.isEmpty() && password.isEmpty()){
+        if(name.isEmpty() && password.isEmpty()){
             //error_password.setVisibility(View.VISIBLE);
             //error_email.setVisibility(View.VISIBLE);
             Toast.makeText(this,"Please enter the password and the email correctly",Toast.LENGTH_LONG).show();
         }
-        else if (email.equalsIgnoreCase("")){
+        else if (name.equalsIgnoreCase("")){
             //error_email.setVisibility(View.VISIBLE);
             Toast.makeText(this,"Please enter the email correctly",Toast.LENGTH_LONG).show();
         }
@@ -154,9 +158,6 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
-            url = "http://192.168.0.102/MobileFinalProject/BackEnd/login.php";
-            post = new PostRequest();
-            post.execute(email,password,url);
 
             if(exist){
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

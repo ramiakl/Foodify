@@ -2,7 +2,6 @@
 
 include ("db_info.php");
 
-
 $user = $_POST["name"];
 $password = $_POST["password"];
 $email = $_POST["email"];
