@@ -3,12 +3,15 @@
 include ("db_info.php");
 
 
-$user = $_POST["user"];
+$user = $_POST["name"];
 $password = $_POST["password"];
 $email = $_POST["email"];
 
 
 $date = date('d-m-y h:i:s'); 
+
+$response = [];
+$response["status"] = "Completed!";
 
 $json_response = json_encode($response);
 echo($json_response);

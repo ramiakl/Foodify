@@ -16,7 +16,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Profile extends AppCompatActivity implements CalendarAdapter.OnItemListener {
+public class Calendar extends AppCompatActivity implements CalendarAdapter.OnItemListener {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
@@ -81,20 +81,6 @@ public class Profile extends AppCompatActivity implements CalendarAdapter.OnItem
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return date.format(formatter);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void previousMonthAction(View view)
-    {
-        selectedDate = selectedDate.minusMonths(1);
-        setMonthView();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void nextMonthAction(View view)
-    {
-        selectedDate = selectedDate.plusMonths(1);
-        setMonthView();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

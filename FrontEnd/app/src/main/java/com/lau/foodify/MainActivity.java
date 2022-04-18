@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 
-import com.lau.foodify.databinding.GridListBinding;
 import com.lau.foodify.databinding.MainActivityBinding;
 
 import java.util.ArrayList;
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void toprofile(View view){
-        intent = new Intent(getApplicationContext(), Profile.class);
+        intent = new Intent(getApplicationContext(), Calendar.class);
         startActivity(intent);
     }
 
