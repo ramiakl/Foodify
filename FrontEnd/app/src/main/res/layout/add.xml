@@ -19,8 +19,28 @@
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@drawable/addrecipe" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/calories"
+        app:layout_constraintEnd_toStartOf="@+id/calories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cooking_time"
+        app:srcCompat="@drawable/calories" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rec_name"
+        app:layout_constraintEnd_toStartOf="@+id/rec_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rec_name"
+        app:srcCompat="@drawable/hat" />
+
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/rec_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -28,26 +48,26 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.262" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/cooking_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Cook Time"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+        app:layout_constraintBottom_toTopOf="@+id/calories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintStart_toStartOf="@+id/rec_name"
+        app:layout_constraintTop_toBottomOf="@+id/rec_name" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,20 +76,20 @@
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/cooking_time"
+        app:layout_constraintTop_toBottomOf="@+id/rec_name"
         app:layout_constraintVertical_bias="0.110000014" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="wrap_content"
+        android:id="@+id/ing"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Please add an ingredient"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addBackground"
         app:layout_constraintVertical_bias="0.571" />
@@ -78,15 +98,16 @@
         android:id="@+id/addIng"
         android:layout_width="75dp"
         android:layout_height="50dp"
+        android:onClick="addIng"
         android:text="Add"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName4"
+        app:layout_constraintBottom_toBottomOf="@+id/ing"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toEndOf="@+id/ing"
+        app:layout_constraintTop_toTopOf="@+id/ing" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/instru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -100,7 +121,7 @@
 
     <Button
         android:id="@+id/addRecipe"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="75dp"
         android:backgroundTint="#200A4D"
         android:onClick="addRecipe"
@@ -113,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/addBackground"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/instru" />
 
     <TextView
         android:id="@+id/nothing"
@@ -125,5 +146,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addBackground"
         app:layout_constraintVertical_bias="0.706" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cooking_time"
+        app:layout_constraintEnd_toStartOf="@+id/cooking_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_name"
+        app:srcCompat="@drawable/time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

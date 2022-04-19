@@ -2,7 +2,7 @@
 
 include("db_info.php");
 
-$query = $mysqli->prepare("SELECT * FROM cookbook;");
+$query = $mysqli->prepare("SELECT Recipe_name,cooktime FROM recipe;");
 $query->execute();
 
 $array = $query->get_result();

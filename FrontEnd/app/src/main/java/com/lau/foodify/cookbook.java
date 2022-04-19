@@ -85,12 +85,12 @@ public class cookbook extends AppCompatActivity {
                 for(int i=0; i<listdata.size();i++){
                     obj = (JSONObject) jsonArray.get(i);
                     name[i] = obj.getString("Recipe_name");
-                    time[i] = obj.getString("cook_time");
+                    time[i] = obj.getString("cooktime");
                 }
 
                 Log.i("Recipe",Arrays.toString(name));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.pizza};
+                int[] flowerImages = {R.drawable.pizza,R.drawable.burger};
 
                 gridAdapter = new GridAdapter(getApplicationContext(),name,time,flowerImages);
                 binding.gridView.setAdapter(gridAdapter);
