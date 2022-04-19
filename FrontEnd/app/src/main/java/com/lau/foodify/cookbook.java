@@ -88,8 +88,9 @@ public class cookbook extends AppCompatActivity {
                     time[i] = obj.getString("cook_time");
                 }
 
+                Log.i("Recipe",Arrays.toString(name));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza};
+                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.pizza};
 
                 gridAdapter = new GridAdapter(getApplicationContext(),name,time,flowerImages);
                 binding.gridView.setAdapter(gridAdapter);
@@ -106,12 +107,13 @@ public class cookbook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cookbook.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
+
+       binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
 
 
     }
