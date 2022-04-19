@@ -2,9 +2,11 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.lau.foodify.databinding.CartBinding;
@@ -29,6 +31,7 @@ public class Cart extends AppCompatActivity {
     String url;
     String[] food,weight,item_price;
     GridPantryCart gridAdapter;
+    Intent intent;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -94,6 +97,8 @@ public class Cart extends AppCompatActivity {
                     item_price[i]= first.getString("price");
 
                 }
+
+
                 Log.i("Result", Arrays.toString(food));
 
                 int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza};
@@ -121,8 +126,6 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
 
-        price = 0;
-        total_price = (TextView) findViewById(R.id.price);
         url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
@@ -130,6 +133,22 @@ public class Cart extends AppCompatActivity {
         binding = CartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        total_price.setText(" W er "+price);
+    }
+
+    public void tocookbook(View view){
+        intent = new Intent(getApplicationContext(), cookbook.class);
+        startActivity(intent);
+    }
+    public void topantry(View view){
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+    public void toadd(View view){
+        intent = new Intent(getApplicationContext(), Add.class);
+        startActivity(intent);
+    }
+    public void toprofile(View view){
+        intent = new Intent(getApplicationContext(), Calendar.class);
+        startActivity(intent);
     }
 }
