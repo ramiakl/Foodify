@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GridAdapterPantry extends BaseAdapter {
+public class GridPantryCart extends BaseAdapter {
     Context context;
     String[] food;
     String[] weight;
@@ -18,7 +18,7 @@ public class GridAdapterPantry extends BaseAdapter {
 
     LayoutInflater inflater;
 
-    public GridAdapterPantry(Context context, String[] food, String[] weight, String[] location,String[] date, int[] image) {
+    public GridPantryCart(Context context, String[] food, String[] weight,String[] date, int[] image) {
         this.context = context;
         this.food = food;
         this.weight = weight;
@@ -56,16 +56,14 @@ public class GridAdapterPantry extends BaseAdapter {
         ImageView imageView = view.findViewById(R.id.food_icon);
         TextView food_txt = view.findViewById(R.id.food);
         TextView exp_txt = view.findViewById(R.id.exp);
-        TextView location_txt = view.findViewById(R.id.location);
         TextView weight_txt = view.findViewById(R.id.weight);
-        TextView lbp = view.findViewById(R.id.lbp);
+        TextView location_txt = view.findViewById(R.id.location);
 
         imageView.setImageResource(image[i]);
         food_txt.setText(food[i]);
         weight_txt.setText(weight[i]);
         exp_txt.setText(date[i]);
-        location_txt.setText(location[i]);
-        lbp.setVisibility(View.GONE);
+        location_txt.setVisibility(View.GONE);
 
         return view;
     }

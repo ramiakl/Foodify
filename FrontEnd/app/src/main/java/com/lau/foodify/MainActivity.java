@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView search_icon;
     String url;
     String[] food,weight,location,date;
+    GridAdapterPantry gridAdapter;
 
     MainActivityBinding binding;
 
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza};
 
-                GridAdapterPantry gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date,flowerImages);
+                gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date,flowerImages);
                 binding.list.setAdapter(gridAdapter);
 
         }catch(Exception e){
