@@ -103,10 +103,10 @@ public class Cart extends AppCompatActivity {
 
                 for(int i=0; i<item_price.length;i++){
                     price += Double.parseDouble(item_price[i]);
-
                 }
 
-                total_price = (TextView) findViewById(R.id.price);
+                Log.i("price",""+price);
+                total_price.setText(""+price);
 
             }catch(Exception e){
                 Log.i("exeOnPost",e.getMessage());
@@ -122,7 +122,7 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.cart);
 
         price = 0;
-
+        total_price = (TextView) findViewById(R.id.price);
         url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
@@ -130,6 +130,6 @@ public class Cart extends AppCompatActivity {
         binding = CartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        total_price.setText(" W er "+price);
     }
 }
