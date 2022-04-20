@@ -13,9 +13,9 @@ $response["status"] = "Completed!";
 $json_response = json_encode($response);
 echo($json_response);
 
-
-$query = $mysqli->prepare("INSERT INTO cart (item, price, Weight) VALUES (?, ?, ?)");
+$query = $mysqli->prepare("INSERT INTO cart (item_name, price, weight) VALUES (?, ?, ?)");
 $query->bind_param("sss", $item, $price,$weight);
 $query->execute();
+
 
 ?>

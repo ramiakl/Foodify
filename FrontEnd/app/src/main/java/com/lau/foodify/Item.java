@@ -56,7 +56,7 @@ public class Item extends AppCompatActivity {
                         +URLEncoder.encode("location", "UTF-8")+"="+URLEncoder.encode(location, "UTF-8")+"&"
                         +URLEncoder.encode("doe", "UTF-8")+"="+URLEncoder.encode(doe, "UTF-8");
 
-                Log.i("String",post_data);
+                Log.i("Post Data",post_data);
 
                 br.write(post_data); //Writing and sending data.
                 br.flush();

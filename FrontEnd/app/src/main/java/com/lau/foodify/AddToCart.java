@@ -35,7 +35,7 @@ public class AddToCart extends AppCompatActivity {
             String name = params[0];
             String weight = params[1];
             String price = params[2];
-            String str_url = params[4];
+            String str_url = params[3];
 
             try {
                 // Creating a new URL connection with PHP.
@@ -54,7 +54,7 @@ public class AddToCart extends AppCompatActivity {
                         +URLEncoder.encode("weight", "UTF-8")+"="+URLEncoder.encode(weight, "UTF-8")+"&"
                         +URLEncoder.encode("price", "UTF-8")+"="+URLEncoder.encode(price, "UTF-8");
 
-                Log.i("String",post_data);
+                Log.i("String2",post_data);
 
                 br.write(post_data); //Writing and sending data.
                 br.flush();
@@ -62,7 +62,6 @@ public class AddToCart extends AppCompatActivity {
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-                Log.i("Stream",is.toString());
                 urlConnection.disconnect();
 
                 //Catching exceptions
@@ -95,11 +94,13 @@ public class AddToCart extends AppCompatActivity {
         iname = name.getText().toString();
         wei = weight.getText().toString();
         price = price_txt.getText().toString();
+        Log.i("Abel",iname+wei+price);
 
-        PostRequest post = new PostRequest();
-        post.execute(iname,wei,price,url);
+       PostRequest post = new PostRequest();
+       post.execute(iname,wei,price,url);
 
-        intent = new Intent(getApplicationContext(), Cart.class);
-        startActivity(intent);
+
+       intent = new Intent(getApplicationContext(), MainActivity.class);
+       startActivity(intent);
     }
 }

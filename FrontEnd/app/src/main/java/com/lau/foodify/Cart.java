@@ -153,6 +153,7 @@ public class Cart extends AppCompatActivity {
     }
 
     public void addCart(View view){
-
+        intent = new Intent(getApplicationContext(), AddToCart.class);
+        startActivity(intent);
     }
 }
