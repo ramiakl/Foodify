@@ -55,10 +55,12 @@ public class Add extends AppCompatActivity {
 
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
-                        +URLEncoder.encode("instructions", "UTF-8")+"="+URLEncoder.encode(instructions, "UTF-8")
-                        +URLEncoder.encode("ingredients", "UTF-8")+"="+URLEncoder.encode(ingredients, "UTF-8")
-                        +URLEncoder.encode("calories", "UTF-8")+"="+URLEncoder.encode(calories, "UTF-8")
+                        +URLEncoder.encode("instructions", "UTF-8")+"="+URLEncoder.encode(instructions, "UTF-8")+"&"
+                        +URLEncoder.encode("ingredients", "UTF-8")+"="+URLEncoder.encode(ingredients, "UTF-8")+"&"
+                        +URLEncoder.encode("calories", "UTF-8")+"="+URLEncoder.encode(calories, "UTF-8")+"&"
                         +URLEncoder.encode("time", "UTF-8")+"="+URLEncoder.encode(time, "UTF-8");
+
+                Log.i("String",post_data);
 
                 br.write(post_data); //Writing and sending data.
                 br.flush();
@@ -66,7 +68,7 @@ public class Add extends AppCompatActivity {
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-
+                Log.i("Stream",is.toString());
                 urlConnection.disconnect();
 
                 //Catching exceptions

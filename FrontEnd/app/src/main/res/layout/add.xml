@@ -124,7 +124,7 @@
         android:layout_width="250dp"
         android:layout_height="75dp"
         android:backgroundTint="#200A4D"
-        android:onClick="addRecipe"
+        android:onClick="addRec"
         android:text="Add Recipe"
         android:textAlignment="center"
         android:textAllCaps="false"
