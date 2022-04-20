@@ -27,6 +27,7 @@
         android:layout_height="75dp"
         android:layout_marginBottom="84dp"
         android:backgroundTint="#200A4D"
+        android:onClick="addPantry"
         android:text="Add Item"
         android:textAlignment="center"
         android:textAllCaps="false"

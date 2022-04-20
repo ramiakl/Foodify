@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.i("Result", Arrays.toString(food));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza};
+                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.pizza};
 
                 gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date,flowerImages);
                 binding.list.setAdapter(gridAdapter);
