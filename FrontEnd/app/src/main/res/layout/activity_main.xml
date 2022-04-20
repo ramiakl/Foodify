@@ -144,4 +144,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cookbook_title" />
 
+    <ImageView
+        android:id="@+id/searchApi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="searchApi"
+        app:layout_constraintBottom_toBottomOf="@+id/cookbook_search"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toEndOf="@+id/cookbook_search"
+        app:layout_constraintTop_toTopOf="@+id/cookbook_search"
+        app:layout_constraintVertical_bias="0.555"
+        app:srcCompat="@drawable/search" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

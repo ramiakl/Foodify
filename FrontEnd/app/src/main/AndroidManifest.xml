@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Foodify"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Receipe"
+            android:exported="false" />
+        <activity
             android:name=".AddToCart"
             android:exported="false" />
         <activity

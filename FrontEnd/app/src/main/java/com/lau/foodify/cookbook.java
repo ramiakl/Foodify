@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import com.lau.foodify.databinding.ActivityMainBinding;
 
@@ -29,6 +31,9 @@ public class cookbook extends AppCompatActivity {
     GridAdapter gridAdapter;
     String url;
     Intent intent;
+    EditText search;
+    String recipe_name, api_url;
+    String chosen_recipe;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -98,6 +103,16 @@ public class cookbook extends AppCompatActivity {
                 gridAdapter = new GridAdapter(getApplicationContext(),name,time,flowerImages);
                 binding.gridView.setAdapter(gridAdapter);
 
+                binding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        chosen_recipe = gridAdapter.getItem(i);
+                        Intent intent = new Intent(getApplicationContext(), Receipe.class);
+                        intent.putExtra("Chosen",chosen_recipe);
+                        startActivity(intent);
+                    }
+                });
+
             }catch(Exception e){
                 Log.i("exeOnPost",e.getMessage());
             }
@@ -114,8 +129,10 @@ public class cookbook extends AppCompatActivity {
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
-       binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        search = (EditText) findViewById(R.id.cookbook_search);
 
     }
 
@@ -134,5 +151,15 @@ public class cookbook extends AppCompatActivity {
     public void toprofile(View view){
         intent = new Intent(getApplicationContext(), Calendar.class);
         startActivity(intent);
+    }
+
+    public void searchApi(View view){
+
+        recipe_name = search.getText().toString();
+
+        api_url = "https://api.edamam.com/api/recipes/v2?app_id=eda991ec&app_key=f2fb648225f7ce72d8f42aca0bca04db&type=public";
+
+        api_url += "&q="+recipe_name;
+
     }
 }

@@ -29,8 +29,8 @@ public class GridAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public String getItem(int i) {
+        return recipe[i];
     }
 
     @Override
