@@ -3,9 +3,8 @@
 include ("db_info.php");
 
 $name = $_POST["name"];
-$password = $_POST["password"];
 
-$sql = "select * From user where username = '$name' and password = '$password'";  
+$sql = "select * From recipe where Recipe_name = '$name'";  
 
 $result = mysqli_query($con ,$sql);  
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
