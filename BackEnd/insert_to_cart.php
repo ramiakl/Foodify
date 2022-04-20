@@ -3,7 +3,7 @@
 include ("db_info.php");
 
 
-$item = $_POST["item"];
+$item = $_POST["name"];
 $price = $_POST["price"];
 $weight = $_POST["weight"];
 

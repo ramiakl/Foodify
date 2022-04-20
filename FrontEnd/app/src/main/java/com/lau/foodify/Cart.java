@@ -151,4 +151,8 @@ public class Cart extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), Calendar.class);
         startActivity(intent);
     }
+
+    public void addCart(View view){
+
+    }
 }
