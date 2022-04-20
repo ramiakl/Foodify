@@ -2,6 +2,7 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -131,10 +132,6 @@ public class MainActivity extends AppCompatActivity {
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-        search = (EditText) findViewById(R.id.search_tab);
-        search_icon = (ImageView) findViewById(R.id.search_icon);
-
     }
 
     public void tocookbook(View view){
@@ -154,12 +151,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void search (View view){
 
-        String item = search.getText().toString();
-
-        // connect to api
-        // reset adapter
+    public void addItem(View vew){
+        intent = new Intent(getApplicationContext(), Item.class);
+        startActivity(intent);
     }
 
 }

@@ -8,14 +8,14 @@
     <GridView
         android:id="@+id/list"
         android:layout_width="wrap_content"
-        android:layout_height="453dp"
+        android:layout_height="520dp"
         android:numColumns="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
+        app:layout_constraintVertical_bias="0.644" />
 
     <TextView
         android:id="@+id/pantry"
@@ -28,38 +28,10 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
-
-    <EditText
-        android:id="@+id/search_tab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Search"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.318"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757" />
-
-    <ImageView
-        android:id="@+id/search_icon"
-        android:layout_width="44dp"
-        android:layout_height="45dp"
-        android:onClick="search"
-        app:layout_constraintBottom_toTopOf="@+id/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toEndOf="@+id/search_tab"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757"
-        app:srcCompat="@drawable/search" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <View
         android:id="@+id/divider3"
@@ -133,5 +105,18 @@
         app:layout_constraintTop_toBottomOf="@+id/list"
         app:layout_constraintVertical_bias="0.52"
         app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/addItem"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:onClick="addItem"
+        app:layout_constraintBottom_toBottomOf="@+id/pantry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.742"
+        app:layout_constraintStart_toEndOf="@+id/pantry"
+        app:layout_constraintTop_toTopOf="@+id/pantry"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

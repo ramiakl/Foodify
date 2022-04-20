@@ -48,10 +48,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <EditText
         android:id="@+id/cooking_time"
@@ -89,10 +89,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.183"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addBackground"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.502" />
 
     <Button
         android:id="@+id/addIng"
@@ -115,7 +115,7 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nothing" />
 
@@ -132,9 +132,10 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/addBackground"
-        app:layout_constraintTop_toBottomOf="@+id/instru" />
+        app:layout_constraintTop_toBottomOf="@+id/instru"
+        app:layout_constraintVertical_bias="0.111" />
 
     <TextView
         android:id="@+id/nothing"
@@ -142,10 +143,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addBackground"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <ImageView
         android:id="@+id/imageView4"

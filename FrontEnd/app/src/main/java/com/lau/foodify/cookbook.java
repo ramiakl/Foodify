@@ -2,9 +2,11 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.lau.foodify.databinding.ActivityMainBinding;
@@ -26,6 +28,7 @@ public class cookbook extends AppCompatActivity {
     String[] name, time;
     GridAdapter gridAdapter;
     String url;
+    Intent intent;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -90,7 +93,7 @@ public class cookbook extends AppCompatActivity {
 
                 Log.i("Recipe",Arrays.toString(name));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger};
+                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger};
 
                 gridAdapter = new GridAdapter(getApplicationContext(),name,time,flowerImages);
                 binding.gridView.setAdapter(gridAdapter);
@@ -114,7 +117,22 @@ public class cookbook extends AppCompatActivity {
        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+    }
 
-
+    public void topantry(View view){
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+    public void tocart(View view){
+        intent = new Intent(getApplicationContext(), Cart.class);
+        startActivity(intent);
+    }
+    public void toadd(View view){
+        intent = new Intent(getApplicationContext(), Add.class);
+        startActivity(intent);
+    }
+    public void toprofile(View view){
+        intent = new Intent(getApplicationContext(), Calendar.class);
+        startActivity(intent);
     }
 }
