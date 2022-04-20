@@ -1,5 +1,6 @@
 package com.lau.foodify;
 
+import androidx.annotation.DoNotInline;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,17 +13,22 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Receipe extends AppCompatActivity {
 
-    TextView txt;
-    String[] name, time, calories,ing ,inst;
+    TextView rec, duration, cal, ingredients, instructions ;
+    String name, time, calories,ing ,inst, url;
+
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -30,16 +36,34 @@ public class Receipe extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             //The method takes String parameter and gets a required data from an external URL API.
             String result = "";
-            URL url;
+            String name = urls[0];
+            String str_url = urls[1];
             HttpURLConnection http; //Initializing the url connection object
 
             try {
-                url = new URL(urls[0]);
-                http = (HttpURLConnection) url.openConnection(); //Declaring the Url connection object
+                URL url = new URL(str_url);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
 
-                InputStream inputStream = http.getInputStream(); //initializing InputStream Object to pass data.
+                OutputStream out = urlConnection.getOutputStream(); //Initializing OutputStream Object.
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //Initializing BufferedReader Object to Read data.
+                BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
+
+                // Setting the variables to be sent to the URL
+                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
+
+                Log.i("String",post_data);
+
+                br.write(post_data); //Writing and sending data.
+                br.flush();
+                br.close();
+                out.close();
+
+                InputStream is = urlConnection.getInputStream();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
                 String line = reader.readLine(); //Get the data ad store it in a String.
 
                 while (line != null) {
@@ -60,42 +84,17 @@ public class Receipe extends AppCompatActivity {
             try{
 
                 Log.i("String", s);
-                JSONArray jsonArray = new JSONArray(s);
 
-                ArrayList<Object> listdata = new ArrayList<Object>();
-                JSONObject first = (JSONObject) jsonArray.get(1);
+                JSONObject first  = new JSONObject(s);
 
-                //Checking whether the JSON array has some value or not
-                if (jsonArray != null) {
+                name = first.getString("Recipe_name");
+                calories = first.getString("calories");
+                ing= first.getString("Ingredients");
+                time = first.getString("cooktime");
+                inst = first.getString("Instructions");
 
-                    //Iterating JSON array
-                    for (int i=0;i<jsonArray.length();i++){
+                Log.i("Result", name+calories+ing+inst+time);
 
-                        //Adding each element of JSON array into ArrayList
-                        listdata.add(jsonArray.get(i));
-                    }
-                }
-                //Iterating ArrayList to print each element
-
-                for(int i=0; i<listdata.size(); i++) {
-                    //Printing each element of ArrayList
-                    Log.i("Data", listdata.get(i).toString());
-                }
-                
-
-                for(int i=0; i<listdata.size();i++){
-                    first = (JSONObject) jsonArray.get(i);
-                    name[i] = first.getString("item_name");
-                    calories[i] = first.getString("Weight");
-                    ing[i]= first.getString("location");
-                    date[i]= first.getString("date_of_expiration");
-                }
-                Log.i("Result", Arrays.toString(food));
-
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.pizza};
-
-                gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date,flowerImages);
-                binding.list.setAdapter(gridAdapter);
 
             }catch(Exception e){
                 Log.i("exeOnPost",e.getMessage());
@@ -110,9 +109,13 @@ public class Receipe extends AppCompatActivity {
 
         Intent x = getIntent();
         String receipe = x.getStringExtra("Chosen");
-        txt = (TextView) findViewById(R.id.rec_name);
-        txt.setText(receipe);
+        rec = (TextView) findViewById(R.id.rec_name);
+        rec.setText(receipe);
 
+        url = "http://localhost/MobileFinalProject/BackEnd/get_receipe.php";
+
+        DownloadTask task = new DownloadTask();
+        task.execute(receipe,url);
 
     }
 }
