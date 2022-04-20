@@ -13,8 +13,10 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/addrecipe" />
 
     <TextView
@@ -32,20 +34,20 @@
         app:layout_constraintVertical_bias="0.206" />
 
     <TextView
-        android:id="@+id/cooking_time"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Cook Time"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/calories"
+        app:layout_constraintBottom_toTopOf="@+id/calo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rec_name"
         app:layout_constraintTop_toBottomOf="@+id/rec_name" />
 
     <TextView
-        android:id="@+id/calories"
+        android:id="@+id/calo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cooking_time"
+        app:layout_constraintStart_toStartOf="@+id/duration"
         app:layout_constraintTop_toBottomOf="@+id/rec_name"
         app:layout_constraintVertical_bias="0.110000014" />
 
@@ -62,10 +64,10 @@
         android:id="@+id/imageView2"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/calories"
-        app:layout_constraintEnd_toStartOf="@+id/calories"
+        app:layout_constraintBottom_toBottomOf="@+id/calo"
+        app:layout_constraintEnd_toStartOf="@+id/calo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/calories"
+        app:layout_constraintTop_toTopOf="@+id/calo"
         app:srcCompat="@drawable/calories" />
 
     <ImageView
@@ -82,10 +84,33 @@
         android:id="@+id/imageView4"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cooking_time"
-        app:layout_constraintEnd_toStartOf="@+id/cooking_time"
+        app:layout_constraintBottom_toBottomOf="@+id/duration"
+        app:layout_constraintEnd_toStartOf="@+id/duration"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cooking_time"
+        app:layout_constraintTop_toTopOf="@+id/duration"
         app:srcCompat="@drawable/time" />
+
+    <TextView
+        android:id="@+id/ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/addBackground"
+        app:layout_constraintEnd_toEndOf="@+id/addBackground"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/addBackground"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.693" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

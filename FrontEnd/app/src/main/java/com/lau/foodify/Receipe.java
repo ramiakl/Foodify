@@ -2,7 +2,7 @@ package com.lau.foodify;
 
 import androidx.annotation.DoNotInline;
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.util.Date;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -83,9 +83,12 @@ public class Receipe extends AppCompatActivity {
             super.onPostExecute(s);
             try{
 
-                Log.i("String", s);
+                Log.i("Ayre", s);
 
-                JSONObject first  = new JSONObject(s);
+                JSONArray jsonArray = new JSONArray(s);
+
+                ArrayList<Object> listdata = new ArrayList<Object>();
+                JSONObject first = (JSONObject) jsonArray.get(0);
 
                 name = first.getString("Recipe_name");
                 calories = first.getString("calories");
@@ -95,6 +98,11 @@ public class Receipe extends AppCompatActivity {
 
                 Log.i("Result", name+calories+ing+inst+time);
 
+
+                duration.setText(time);
+                cal.setText(calories);
+                ingredients.setText(ing);
+                instructions.setText(inst);
 
             }catch(Exception e){
                 Log.i("exeOnPost",e.getMessage());
@@ -110,12 +118,18 @@ public class Receipe extends AppCompatActivity {
         Intent x = getIntent();
         String receipe = x.getStringExtra("Chosen");
         rec = (TextView) findViewById(R.id.rec_name);
+        duration = (TextView) findViewById(R.id.duration);
+        cal = (TextView) findViewById(R.id.calo);
+        ingredients = (TextView) findViewById(R.id.ingredient);
+        instructions = (TextView) findViewById(R.id.instruction);
+
         rec.setText(receipe);
 
-        url = "http://localhost/MobileFinalProject/BackEnd/get_receipe.php";
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_receipe.php";
 
         DownloadTask task = new DownloadTask();
         task.execute(receipe,url);
+
 
     }
 }
