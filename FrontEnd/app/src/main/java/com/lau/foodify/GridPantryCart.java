@@ -53,13 +53,13 @@ public class GridPantryCart extends BaseAdapter {
 
         }
 
-        ImageView imageView = view.findViewById(R.id.food_icon);
+        //ImageView imageView = view.findViewById(R.id.food_icon);
         TextView food_txt = view.findViewById(R.id.food);
         TextView exp_txt = view.findViewById(R.id.exp);
         TextView weight_txt = view.findViewById(R.id.weight);
         TextView location_txt = view.findViewById(R.id.location);
 
-        imageView.setImageResource(image[i]);
+        //imageView.setImageResource(image[i]);
         food_txt.setText(food[i]);
         weight_txt.setText(weight[i]);
         exp_txt.setText(date[i]);

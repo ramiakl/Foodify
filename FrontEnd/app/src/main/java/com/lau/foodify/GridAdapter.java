@@ -50,11 +50,11 @@ public class GridAdapter extends BaseAdapter {
 
         }
 
-        ImageView imageView = view.findViewById(R.id.grid_image);
+        //ImageView imageView = view.findViewById(R.id.grid_image);
         TextView textView = view.findViewById(R.id.item_name);
         TextView time = view.findViewById(R.id.time);
 
-        imageView.setImageResource(image[i]);
+        //imageView.setImageResource(image[i]);
         textView.setText(recipe[i]);
         time.setText(cooktime[i]);
 

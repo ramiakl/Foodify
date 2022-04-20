@@ -2,11 +2,13 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,6 +26,7 @@ public class Add extends AppCompatActivity {
 
     String name,calories,cooktime,ingredients,instructions,url;
     EditText recipe, kcal, time, ing, inst;
+    Intent intent;
 
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -113,8 +116,16 @@ public class Add extends AppCompatActivity {
         cooktime = time.getText().toString();
         instructions = inst.getText().toString();
 
-        PostRequest post = new PostRequest();
-        post.execute(name,instructions,ingredients,calories,cooktime,url);
+        if(name.isEmpty() || calories.isEmpty() || cooktime.isEmpty() || instructions.isEmpty()){
+            Toast.makeText(this,"Bala manyake",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            PostRequest post = new PostRequest();
+            post.execute(name, instructions, ingredients, calories, cooktime, url);
+
+            intent = new Intent(getApplicationContext(), cookbook.class);
+            startActivity(intent);
+        }
 
     }
 }
