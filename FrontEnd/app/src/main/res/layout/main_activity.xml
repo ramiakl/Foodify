@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#749AD5F6">
 
     <GridView
         android:id="@+id/list"
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:background="?android:attr/listDivider"
-        android:backgroundTint="#21E1F3"
+        android:backgroundTint="#9AD5F6"
         android:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,9 +76,11 @@
         android:layout_height="50dp"
         android:onClick="toadd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cookbook"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/list"
+        app:layout_constraintVertical_bias="0.36"
         app:srcCompat="@drawable/add" />
 
     <ImageView
@@ -87,24 +90,11 @@
         android:onClick="tocookbook"
         app:layout_constraintBottom_toBottomOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="@+id/divider3"
-        app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toEndOf="@+id/add"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        app:layout_constraintVertical_bias="0.52"
-        app:srcCompat="@drawable/cookbook" />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="toprofile"
-        app:layout_constraintBottom_toBottomOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list"
         app:layout_constraintVertical_bias="0.52"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/cookbook" />
 
     <ImageView
         android:id="@+id/addItem"

@@ -100,7 +100,7 @@ public class AddToCart extends AppCompatActivity {
        post.execute(iname,wei,price,url);
 
 
-       intent = new Intent(getApplicationContext(), MainActivity.class);
+       intent = new Intent(getApplicationContext(), Cart.class);
        startActivity(intent);
     }
 }

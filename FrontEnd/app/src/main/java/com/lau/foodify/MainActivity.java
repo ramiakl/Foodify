@@ -105,13 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     food[i] = first.getString("item_name");
                     weight[i] = first.getString("Weight");
                     location[i]= first.getString("location");
-                    date[i]= first.getString("date_of_expiration");
+                    date[i]= "Exp: " + first.getString("date_of_expiration");
                 }
                 Log.i("Result", Arrays.toString(food));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.pizza};
-
-                gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date,flowerImages);
+                gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date);
                 binding.list.setAdapter(gridAdapter);
 
         }catch(Exception e){

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lau.foodify.databinding.CartBinding;
 import com.lau.foodify.databinding.MainActivityBinding;
@@ -98,20 +99,21 @@ public class Cart extends AppCompatActivity {
 
                 }
 
+              //  Log.i("length",""+item_price.length);
 
-                Log.i("Result", Arrays.toString(food));
-
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza};
-
-                gridAdapter = new GridPantryCart(getApplicationContext(),food,weight,item_price,flowerImages);
-                binding.shoppingList.setAdapter(gridAdapter);
-
-                for(int i=0; i<item_price.length;i++){
-                    price += Double.parseDouble(item_price[i]);
-                }
+                //for(int i=0; i<item_price.length;i++){
+                  //  price += Double.parseDouble(item_price[i]);
+                //}
 
                 Log.i("price",""+price);
                 total_price.setText(""+price);
+
+                Log.i("Result", Arrays.toString(food));
+
+
+                gridAdapter = new GridPantryCart(getApplicationContext(),food,weight,item_price);
+                binding.shoppingList.setAdapter(gridAdapter);
+
 
             }catch(Exception e){
                 Log.i("exeOnPost",e.getMessage());
@@ -125,6 +127,7 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
+        total_price = findViewById(R.id.total_price);
 
         url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
@@ -147,13 +150,47 @@ public class Cart extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), Add.class);
         startActivity(intent);
     }
-    public void toprofile(View view){
-        intent = new Intent(getApplicationContext(), Calendar.class);
-        startActivity(intent);
-    }
 
     public void addCart(View view){
         intent = new Intent(getApplicationContext(), AddToCart.class);
         startActivity(intent);
+    }
+
+    public void deleteAll(View view){
+
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_cart.php";
+        DownloadTaskDelete task = new DownloadTaskDelete();
+        task.execute(url);
+        Toast.makeText(this,"Deleted all",Toast.LENGTH_LONG).show();
+    }
+
+    public class DownloadTaskDelete extends AsyncTask<String, Void, String> {
+        // This class contains methods that enable url connection to an API to retrieve data stored in it.
+
+        protected String doInBackground(String... urls) {
+            URL url;
+            String result = "";
+            HttpURLConnection http; //Initializing the url connection object
+
+            try {
+                url = new URL(urls[0]);
+                http = (HttpURLConnection) url.openConnection(); //Declaring the Url connection object
+
+                InputStream inputStream = http.getInputStream(); //initializing InputStream Object to pass data.
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //Initializing BufferedReader Object to Read data.
+                String line = reader.readLine(); //Get the data ad store it in a String.
+
+                while (line != null) {
+                    result += line;
+                    line = reader.readLine(); //Concatenate each line
+                }
+                Log.i("Input",result);
+            } catch (Exception e) {
+                Log.i("exeDOin", e.getMessage());
+                return null;
+            }
+            return null;
+        }
     }
 }

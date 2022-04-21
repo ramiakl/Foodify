@@ -12,18 +12,14 @@ public class GridPantryCart extends BaseAdapter {
     Context context;
     String[] food;
     String[] weight;
-    String[] location;
     String[] date;
-    int[] image;
 
     LayoutInflater inflater;
 
-    public GridPantryCart(Context context, String[] food, String[] weight,String[] date, int[] image) {
+    public GridPantryCart(Context context, String[] food, String[] weight,String[] date) {
         this.context = context;
         this.food = food;
         this.weight = weight;
-        this.location = location;
-        this.image = image;
         this.date = date;
     }
 
@@ -53,16 +49,14 @@ public class GridPantryCart extends BaseAdapter {
 
         }
 
-        //ImageView imageView = view.findViewById(R.id.food_icon);
         TextView food_txt = view.findViewById(R.id.food);
         TextView exp_txt = view.findViewById(R.id.exp);
         TextView weight_txt = view.findViewById(R.id.weight);
         TextView location_txt = view.findViewById(R.id.location);
 
-        //imageView.setImageResource(image[i]);
         food_txt.setText(food[i]);
         weight_txt.setText(weight[i]);
-        exp_txt.setText(date[i]);
+        exp_txt.setText("price: " + date[i]);
         location_txt.setVisibility(View.GONE);
 
         return view;
