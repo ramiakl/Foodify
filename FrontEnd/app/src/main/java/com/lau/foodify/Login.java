@@ -158,11 +158,6 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             if(exist){
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

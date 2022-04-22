@@ -14,7 +14,7 @@ $response["status"] = "Completed!";
 $json_response = json_encode($response);
 echo($json_response);
 
-$query = $mysqli->prepare("INSERT INTO pantry (item_name, date_of_expiration, location, Weight) VALUES (?, ?, ?,?)");
+$query = $mysqli->prepare("INSERT INTO pantry (item_name, date_of_expiration, location, weight) VALUES (?, ?, ?,?)");
 $query->bind_param("ssss", $item, $expiration_date, $location,$weight);
 $query->execute();
 

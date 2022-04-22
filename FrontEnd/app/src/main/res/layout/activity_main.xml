@@ -44,64 +44,6 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/pantry" />
-
-    <ImageView
-        android:id="@+id/cart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="tocart"
-        app:layout_constraintBottom_toBottomOf="@+id/divider3"
-        app:layout_constraintEnd_toStartOf="@+id/add"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/cart" />
-
-    <ImageView
-        android:id="@+id/add"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="toadd"
-        app:layout_constraintBottom_toBottomOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/add" />
-
-    <ImageView
-        android:id="@+id/cookbook"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="tocookbook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/divider3"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toEndOf="@+id/add"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/cookbook" />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="toprofile"
-        app:layout_constraintBottom_toBottomOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/profile" />
-
-    <ImageView
         android:id="@+id/cookbook_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -139,12 +81,12 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/add"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cookbook_title"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <ImageView
         android:id="@+id/searchApi"
@@ -158,5 +100,51 @@
         app:layout_constraintTop_toTopOf="@+id/cookbook_search"
         app:layout_constraintVertical_bias="0.555"
         app:srcCompat="@drawable/search" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="topantry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        app:srcCompat="@drawable/notpantry" />
+
+    <ImageView
+        android:id="@+id/cart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="tocart"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        app:srcCompat="@drawable/cart" />
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="toadd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cookbook"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        app:srcCompat="@drawable/add" />
+
+    <ImageView
+        android:id="@+id/cookbook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="@+id/divider3"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        app:srcCompat="@drawable/incookbook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

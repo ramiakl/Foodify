@@ -18,18 +18,24 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
-    EditText search;
-    ImageView search_icon;
+    EditText delete;
+    ImageView delete_icon;
     String url;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0; i<listdata.size();i++){
                     first = (JSONObject) jsonArray.get(i);
                     food[i] = first.getString("item_name");
-                    weight[i] = first.getString("Weight");
+                    weight[i] = first.getString("weight");
                     location[i]= first.getString("location");
                     date[i]= "Exp: " + first.getString("date_of_expiration");
                 }
@@ -130,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        delete = (EditText) findViewById(R.id.items_delete);
+        delete.setVisibility(View.GONE);
+        delete_icon = (ImageView) findViewById(R.id.delete_icon);
+        delete_icon.setVisibility(View.GONE);
     }
 
     public void tocookbook(View view){
@@ -144,15 +154,74 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), Add.class);
         startActivity(intent);
     }
-    public void toprofile(View view){
-        intent = new Intent(getApplicationContext(), Calendar.class);
-        startActivity(intent);
-    }
 
 
     public void addItem(View vew){
         intent = new Intent(getApplicationContext(), Item.class);
         startActivity(intent);
     }
+
+    public void removeItem(View view){
+
+        delete.setVisibility(View.VISIBLE);
+        delete_icon.setVisibility(View.VISIBLE);
+
+    }
+
+    public class PostRequest extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            //The method take String parameters and send data to the received url.
+
+            //Storing data in String objects
+            String name = params[0];
+            String str_url = params[1];
+
+            try {
+                // Creating a new URL connection with PHP.
+                URL url = new URL(str_url);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
+
+                OutputStream out = urlConnection.getOutputStream(); //Initializing OutputStream Object.
+
+                BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
+
+                // Setting the variables to be sent to the URL
+                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
+
+                br.write(post_data); //Writing and sending data.
+                br.flush();
+                br.close();
+                out.close();
+
+                InputStream is = urlConnection.getInputStream();
+
+                urlConnection.disconnect();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
+
+    public void deleteApi(View view){
+
+        String item_delete = delete.getText().toString();
+
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_cart.php";
+
+        PostRequest post = new PostRequest();
+        post.execute(item_delete,url);
+
+    }
+
 
 }

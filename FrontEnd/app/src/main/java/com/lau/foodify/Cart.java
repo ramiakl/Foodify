@@ -73,9 +73,7 @@ public class Cart extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
-                JSONObject first = (JSONObject) jsonArray.get(1);
-                String name = first.getString("item_name");
-                Log.i("Name",name);
+                JSONObject first;
                 //Checking whether the JSON array has some value or not
                 if (jsonArray != null) {
 
@@ -96,7 +94,6 @@ public class Cart extends AppCompatActivity {
                     food[i] = first.getString("item_name");
                     weight[i] = first.getString("weight");
                     item_price[i]= first.getString("price");
-
                 }
 
               //  Log.i("length",""+item_price.length);
@@ -178,14 +175,7 @@ public class Cart extends AppCompatActivity {
 
                 InputStream inputStream = http.getInputStream(); //initializing InputStream Object to pass data.
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //Initializing BufferedReader Object to Read data.
-                String line = reader.readLine(); //Get the data ad store it in a String.
 
-                while (line != null) {
-                    result += line;
-                    line = reader.readLine(); //Concatenate each line
-                }
-                Log.i("Input",result);
             } catch (Exception e) {
                 Log.i("exeDOin", e.getMessage());
                 return null;

@@ -10,7 +10,7 @@
     <GridView
         android:id="@+id/shopping_list"
         android:layout_width="wrap_content"
-        android:layout_height="453dp"
+        android:layout_height="425dp"
         android:backgroundTint="#9AD5F6"
         android:numColumns="1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="0.374" >
+
+    </GridView>
 
     <View
         android:id="@+id/divider3"
@@ -44,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/pantry" />
+        app:srcCompat="@drawable/notpantry" />
 
     <ImageView
         android:id="@+id/cart"
@@ -54,7 +56,7 @@
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/divider3"
-        app:srcCompat="@drawable/cart" />
+        app:srcCompat="@drawable/incart" />
 
     <ImageView
         android:id="@+id/add"
@@ -129,7 +131,8 @@
         app:layout_constraintBottom_toTopOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopping_list" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.418" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -139,6 +142,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/shoppingcart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toEndOf="@+id/shoppingcart"
         app:layout_constraintTop_toTopOf="@+id/shoppingcart"
         app:srcCompat="@drawable/add" />
@@ -150,8 +154,23 @@
         android:onClick="deleteAll"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/delete" />
+
+    <View
+        android:id="@+id/divid"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#3949AB"
+        android:backgroundTintMode="add"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_list"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
