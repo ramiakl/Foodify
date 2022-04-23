@@ -6,6 +6,7 @@
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/border.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/box.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/cook_box.xml" value="0.2708333333333333" />
+        <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/item_border.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/items.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/drawable/white_border.xml" value="0.2708333333333333" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/activity_cookbook.xml" value="0.2546875" />
@@ -22,7 +23,7 @@
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/grid_pantry.xml" value="0.2546875" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/item.xml" value="0.2546875" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/login.xml" value="0.268" />
-        <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/main_activity.xml" value="0.2546875" />
+        <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/main_activity.xml" value="0.268" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/pantry.xml" value="0.1" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/profile.xml" value="0.2546875" />
         <entry key="..\:/xampp/htdocs/MobileFinalProject/FrontEnd/app/src/main/res/layout/signup.xml" value="0.268" />

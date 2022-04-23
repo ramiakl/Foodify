@@ -7,14 +7,24 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="409dp"
+        android:layout_width="380dp"
         android:layout_height="90dp"
         android:background="@drawable/items"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_border"
+        android:layout_width="380dp"
+        android:layout_height="75dp"
+        android:background="@drawable/item_border"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <TextView
         android:id="@+id/food"
@@ -23,12 +33,12 @@
         android:text="Ground Beef"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view_border"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="@+id/view_border"
+        app:layout_constraintTop_toTopOf="@+id/view_border"
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/weight"
@@ -36,12 +46,12 @@
         android:layout_height="wrap_content"
         android:text="200 g"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view_border"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/location"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintTop_toTopOf="@+id/view_border"
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/exp"
@@ -49,13 +59,13 @@
         android:layout_height="wrap_content"
         android:text="Expiring in 2 days"
         android:textColor="#F44336"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_border"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/food"
         app:layout_constraintTop_toBottomOf="@+id/food"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintVertical_bias="0.222" />
 
     <TextView
         android:id="@+id/location"
@@ -68,14 +78,14 @@
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/weight"
-        app:layout_constraintVertical_bias="0.42000002" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/lbp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LBP"
-        android:textSize="12sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/exp"
         app:layout_constraintEnd_toStartOf="@+id/weight"
         app:layout_constraintHorizontal_bias="0.087"
@@ -83,17 +93,5 @@
         app:layout_constraintTop_toBottomOf="@+id/food"
         app:layout_constraintVertical_bias="1.0" />
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#3949AB"
-        android:backgroundTintMode="add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

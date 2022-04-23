@@ -4,7 +4,7 @@ include("db_info.php");
 
 $name = $_POST["name"];
 
-$query = $mysqli->prepare("DELETE FROM cart Where item_name = '$name';");
+$query = $mysqli->prepare("DELETE FROM pantry Where item_name = '$name';");
 $query->execute();
 
 $response = [];

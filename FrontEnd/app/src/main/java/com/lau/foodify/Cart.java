@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +19,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,6 +38,7 @@ public class Cart extends AppCompatActivity {
     TextView total_price;
     CartBinding binding;
     String url;
+    EditText delete;
     String[] food,weight,item_price;
     GridPantryCart gridAdapter;
     Intent intent;
@@ -133,6 +142,8 @@ public class Cart extends AppCompatActivity {
         binding = CartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        delete = (EditText) findViewById(R.id.delete_name);
+
     }
 
     public void tocookbook(View view){
@@ -182,5 +193,62 @@ public class Cart extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    public class PostRequest extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            //The method take String parameters and send data to the received url.
+
+            //Storing data in String objects
+            String name = params[0];
+            String str_url = params[1];
+
+            try {
+                // Creating a new URL connection with PHP.
+                URL url = new URL(str_url);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
+
+                OutputStream out = urlConnection.getOutputStream(); //Initializing OutputStream Object.
+
+                BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
+
+                // Setting the variables to be sent to the URL
+                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
+                Log.i("Post",post_data);
+                br.write(post_data); //Writing and sending data.
+                br.flush();
+                br.close();
+                out.close();
+
+                InputStream is = urlConnection.getInputStream();
+
+                urlConnection.disconnect();
+
+            } catch (MalformedURLException e) {
+                Log.i("Mals",e.getMessage());
+            } catch (IOException e) {
+                Log.i("Ioexp",e.getMessage());
+            }
+            return null;
+        }
+
+    }
+
+    public void deleteApi(View view){
+
+        String item_delete = delete.getText().toString();
+
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_cart.php";
+
+        PostRequest post = new PostRequest();
+        post.execute(item_delete,url);
+
+        Toast.makeText(this,item_delete+" was deleted!",Toast.LENGTH_SHORT).show();
+
     }
 }

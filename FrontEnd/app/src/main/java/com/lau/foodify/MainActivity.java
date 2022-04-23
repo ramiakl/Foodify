@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.lau.foodify.databinding.MainActivityBinding;
 
@@ -136,10 +137,7 @@ public class MainActivity extends AppCompatActivity {
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        delete = (EditText) findViewById(R.id.items_delete);
-        delete.setVisibility(View.GONE);
-        delete_icon = (ImageView) findViewById(R.id.delete_icon);
-        delete_icon.setVisibility(View.GONE);
+        delete = (EditText) findViewById(R.id.delete_name);
     }
 
     public void tocookbook(View view){
@@ -161,12 +159,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void removeItem(View view){
-
-        delete.setVisibility(View.VISIBLE);
-        delete_icon.setVisibility(View.VISIBLE);
-
-    }
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -192,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
-
+                Log.i("Post",post_data);
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
@@ -203,9 +195,9 @@ public class MainActivity extends AppCompatActivity {
                 urlConnection.disconnect();
 
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                Log.i("Mals",e.getMessage());
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.i("Ioexp",e.getMessage());
             }
             return null;
         }
@@ -216,10 +208,12 @@ public class MainActivity extends AppCompatActivity {
 
         String item_delete = delete.getText().toString();
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_cart.php";
+        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_pantry.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);
+
+        Toast.makeText(this,item_delete+" was deleted!",Toast.LENGTH_SHORT).show();
 
     }
 
