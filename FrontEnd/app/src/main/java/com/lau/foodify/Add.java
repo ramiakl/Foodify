@@ -24,7 +24,7 @@ import java.net.URLEncoder;
 
 public class Add extends AppCompatActivity {
 
-    String name,calories,cooktime,ingredients,instructions,url;
+    String name,calories,cooktime,ingredients,instructions,url,ip;
     EditText recipe, kcal, time, ing, inst;
     Intent intent;
 
@@ -109,7 +109,7 @@ public class Add extends AppCompatActivity {
 
     public void addRec(View view){
 
-        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_cookBook.php";
+        url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_cookBook.php";
 
         name = recipe.getText().toString();
         calories = kcal.getText().toString();

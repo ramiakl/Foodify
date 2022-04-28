@@ -2,13 +2,11 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     EditText delete;
     ImageView delete_icon;
-    String url;
+    String url,ip;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_pantry.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_pantry.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
@@ -151,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addItem(View vew){
-        intent = new Intent(getApplicationContext(), Item.class);
+        intent = new Intent(getApplicationContext(), AddToPantry.class);
         startActivity(intent);
     }
 

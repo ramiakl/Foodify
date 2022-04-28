@@ -27,7 +27,7 @@ import java.util.Arrays;
 public class Receipe extends AppCompatActivity {
 
     TextView rec, duration, cal, ingredients, instructions ;
-    String name, time, calories,ing ,inst, url;
+    String name, time, calories,ing ,inst, url, ip;
 
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -125,7 +125,7 @@ public class Receipe extends AppCompatActivity {
 
         rec.setText(receipe);
 
-        url = "http://172.20.10.57/MobileFinalProject/BackEnd/get_receipe.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/get_receipe.php";
 
         DownloadTask task = new DownloadTask();
         task.execute(receipe,url);

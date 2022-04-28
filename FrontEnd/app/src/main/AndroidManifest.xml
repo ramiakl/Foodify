@@ -19,10 +19,7 @@
             android:name=".AddToCart"
             android:exported="false" />
         <activity
-            android:name=".Item"
-            android:exported="false" />
-        <activity
-            android:name=".Calendar"
+            android:name=".AddToPantry"
             android:exported="false" />
         <activity
             android:name=".Add"

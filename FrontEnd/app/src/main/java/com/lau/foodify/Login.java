@@ -28,7 +28,7 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
-    String name , password, url;
+    String name , password, url, ip;
     TextView error_password, error_email;
     Boolean exist;
     PostRequest post;
@@ -156,7 +156,7 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
-                url = "http://172.20.10.5/MobileFinalProject/BackEnd/login.php";
+                url = "http://"+ip+"/MobileFinalProject/BackEnd/login.php";
                 post = new PostRequest();
                 post.execute(name,password,url);
         }

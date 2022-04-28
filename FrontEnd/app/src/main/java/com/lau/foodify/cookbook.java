@@ -32,8 +32,8 @@ public class cookbook extends AppCompatActivity {
     String url;
     Intent intent;
     EditText search;
-    String recipe_name, api_url;
-    String chosen_recipe;
+    String recipe_name, api_url, chosen_recipe, ip;
+
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -125,7 +125,7 @@ public class cookbook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_cookbook.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_cookbook.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
@@ -148,18 +148,5 @@ public class cookbook extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), Add.class);
         startActivity(intent);
     }
-    public void toprofile(View view){
-        intent = new Intent(getApplicationContext(), Calendar.class);
-        startActivity(intent);
-    }
 
-    public void searchApi(View view){
-
-        recipe_name = search.getText().toString();
-
-        api_url = "https://api.edamam.com/api/recipes/v2?app_id=eda991ec&app_key=f2fb648225f7ce72d8f42aca0bca04db&type=public";
-
-        api_url += "&q="+recipe_name;
-
-    }
 }

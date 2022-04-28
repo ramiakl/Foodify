@@ -37,7 +37,7 @@ public class Cart extends AppCompatActivity {
     double price;
     TextView total_price;
     CartBinding binding;
-    String url;
+    String url, ip;
     EditText delete;
     String[] food,weight,item_price;
     GridPantryCart gridAdapter;
@@ -136,7 +136,7 @@ public class Cart extends AppCompatActivity {
         total_price = findViewById(R.id.cart_price);
         total_price.setText("AA");
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_cart.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
@@ -167,7 +167,7 @@ public class Cart extends AppCompatActivity {
 
     public void deleteAll(View view){
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_cart.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/delete_cart.php";
         DownloadTaskDelete task = new DownloadTaskDelete();
         task.execute(url);
         Toast.makeText(this,"Deleted all",Toast.LENGTH_LONG).show();
@@ -244,7 +244,7 @@ public class Cart extends AppCompatActivity {
 
         String item_delete = delete.getText().toString();
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_item_cart.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/delete_item_cart.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);

@@ -19,10 +19,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Item extends AppCompatActivity {
+public class AddToPantry extends AppCompatActivity {
 
     EditText name, weight, location, doe;
-    String iname,loc,wei,time,url;
+    String iname,loc,wei,time,url,ip;
     Intent intent;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -93,7 +93,7 @@ public class Item extends AppCompatActivity {
 
     public void addPantry(View view){
 
-        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_pantry_api.php";
+        url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_pantry_api.php";
 
         iname = name.getText().toString();
         wei = weight.getText().toString();

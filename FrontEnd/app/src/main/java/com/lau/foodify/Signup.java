@@ -24,7 +24,7 @@ import java.net.URLEncoder;
 public class Signup extends AppCompatActivity {
     Intent intent;
     EditText email_entry, password_entry, name_entry;
-    String email , password, name;
+    String email , password, name, ip;
     TextView error_password, error_email;
     PostRequestSignUp post;
     String url;
@@ -122,7 +122,7 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(this,"Please enter the name correctly",Toast.LENGTH_LONG).show();
         }
         else {
-            url = "http://192.168.0.102/MobileFinalProject/BackEnd/signup_api.php";
+            url = "http://"+ip+"/MobileFinalProject/BackEnd/signup_api.php";
             post = new PostRequestSignUp(); // Initialize a PostRequest object everytime the user clicks the button.
             post.execute(name,email,password,url);
 

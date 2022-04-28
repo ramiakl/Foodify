@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 public class AddToCart extends AppCompatActivity {
 
     EditText name, weight, price_txt;
-    String iname,wei,price,url;
+    String iname,wei,price,url,ip;
     Intent intent;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -89,7 +89,7 @@ public class AddToCart extends AppCompatActivity {
 
     public void addCart(View view){
 
-        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_cart.php";
+        url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_cart.php";
 
         iname = name.getText().toString();
         wei = weight.getText().toString();
