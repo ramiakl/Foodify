@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class cookbook extends AppCompatActivity {
+public class Cookbook extends AppCompatActivity {
 
     ActivityMainBinding binding;
     String[] name, time;

@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lau.foodify.databinding.CartBinding;
-import com.lau.foodify.databinding.MainActivityBinding;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,8 +32,6 @@ import java.util.Arrays;
 
 public class Cart extends AppCompatActivity {
 
-    double price;
-    TextView total_price;
     CartBinding binding;
     String url, ip;
     EditText delete;
@@ -105,14 +101,6 @@ public class Cart extends AppCompatActivity {
                     item_price[i]= first.getString("price");
                 }
 
-              //  Log.i("length",""+item_price.length);
-
-                //for(int i=0; i<item_price.length;i++){
-                  //  price += Double.parseDouble(item_price[i]);
-                //}
-
-                Log.i("price",""+price);
-                total_price.setText("A"+price);
 
                 Log.i("Result", Arrays.toString(food));
 
@@ -127,14 +115,10 @@ public class Cart extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
-        total_price = findViewById(R.id.cart_price);
-        total_price.setText("AA");
 
         url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
@@ -148,7 +132,7 @@ public class Cart extends AppCompatActivity {
     }
 
     public void tocookbook(View view){
-        intent = new Intent(getApplicationContext(), cookbook.class);
+        intent = new Intent(getApplicationContext(), Cookbook.class);
         startActivity(intent);
     }
     public void topantry(View view){

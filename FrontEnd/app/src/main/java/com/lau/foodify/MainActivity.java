@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tocookbook(View view){
-        intent = new Intent(getApplicationContext(), cookbook.class);
+        intent = new Intent(getApplicationContext(), Cookbook.class);
         startActivity(intent);
     }
     public void tocart(View view){

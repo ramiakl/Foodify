@@ -10,11 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -123,7 +121,7 @@ public class Add extends AppCompatActivity {
             PostRequest post = new PostRequest();
             post.execute(name, instructions, ingredients, calories, cooktime, url);
 
-            intent = new Intent(getApplicationContext(), cookbook.class);
+            intent = new Intent(getApplicationContext(), Cookbook.class);
             startActivity(intent);
         }
 

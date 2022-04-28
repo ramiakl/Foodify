@@ -28,7 +28,7 @@
             android:name=".Cart"
             android:exported="false" />
         <activity
-            android:name=".cookbook"
+            android:name=".Cookbook"
             android:exported="false" />
         <activity
             android:name=".Signup"

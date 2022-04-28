@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#9AD5F6"
+    android:background="#749AD5F6"
     tools:context=".Cart">
 
     <GridView
         android:id="@+id/shopping_list"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:backgroundTint="#9AD5F6"
+        android:layout_height="500dp"
+        android:background="#FFFFFF"
         android:numColumns="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41">
+        app:layout_constraintVertical_bias="0.675">
 
     </GridView>
 
@@ -26,7 +26,6 @@
         android:id="@+id/divider3"
         android:layout_width="wrap_content"
         android:layout_height="75dp"
-        android:background="#9AD5F6"
         android:backgroundTint="#9AD5F6"
         android:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +34,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/border_delete"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/box"
+        app:layout_constraintBottom_toBottomOf="@+id/delete_name"
+        app:layout_constraintEnd_toEndOf="@+id/delete_icon"
+        app:layout_constraintStart_toStartOf="@+id/delete_name"
+        app:layout_constraintTop_toTopOf="@+id/delete_name" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -108,31 +117,6 @@
         app:layout_constraintStart_toEndOf="@+id/cookbook_icon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Price: "
-        android:textColor="#3F51B5"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopping_list"
-        app:layout_constraintVertical_bias="0.118" />
-
-    <TextView
-        android:id="@+id/cart_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Total Price"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.418" />
 
     <ImageView
         android:id="@+id/imageView6"
