@@ -58,12 +58,16 @@ public class Signup extends AppCompatActivity {
                         + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&"
                         + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
+                Log.i("Data",post_data);
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
+                intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+
                 Log.i("inputStream",is.toString());
                 urlConnection.disconnect();
 
@@ -122,8 +126,6 @@ public class Signup extends AppCompatActivity {
             post = new PostRequestSignUp(); // Initialize a PostRequest object everytime the user clicks the button.
             post.execute(name,email,password,url);
 
-            intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
         }
     }
     public void login (View view){

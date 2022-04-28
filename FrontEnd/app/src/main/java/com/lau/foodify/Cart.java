@@ -112,7 +112,7 @@ public class Cart extends AppCompatActivity {
                 //}
 
                 Log.i("price",""+price);
-                total_price.setText(""+price);
+                total_price.setText("A"+price);
 
                 Log.i("Result", Arrays.toString(food));
 
@@ -133,9 +133,10 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
-        total_price = findViewById(R.id.total_price);
+        total_price = findViewById(R.id.cart_price);
+        total_price.setText("AA");
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cart.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
@@ -166,7 +167,7 @@ public class Cart extends AppCompatActivity {
 
     public void deleteAll(View view){
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_cart.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_cart.php";
         DownloadTaskDelete task = new DownloadTaskDelete();
         task.execute(url);
         Toast.makeText(this,"Deleted all",Toast.LENGTH_LONG).show();
@@ -226,7 +227,7 @@ public class Cart extends AppCompatActivity {
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-
+                Log.i("inputStream",is.toString());
                 urlConnection.disconnect();
 
             } catch (MalformedURLException e) {
@@ -243,7 +244,7 @@ public class Cart extends AppCompatActivity {
 
         String item_delete = delete.getText().toString();
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_cart.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_item_cart.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);

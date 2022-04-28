@@ -82,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
-                JSONObject first = (JSONObject) jsonArray.get(1);
+                JSONObject first = (JSONObject) jsonArray.get(0);
                 String name = first.getString("item_name");
                 Log.i("Name",name);
+
                 //Checking whether the JSON array has some value or not
                 if (jsonArray != null) {
 
@@ -96,11 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 //Iterating ArrayList to print each element
-
-                for(int i=0; i<listdata.size(); i++) {
-                    //Printing each element of ArrayList
-                    Log.i("Data", listdata.get(i).toString());
-                }
 
                 food = new String[jsonArray.length()];
                 weight = new String[jsonArray.length()];
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_pantry.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_pantry.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 
@@ -208,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
         String item_delete = delete.getText().toString();
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/delete_item_pantry.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_item_pantry.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);

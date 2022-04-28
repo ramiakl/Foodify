@@ -2,7 +2,8 @@
 
 include("db_info.php");
 
-$query = $mysqli->prepare("SELECT * FROM cart;");
+
+$query = $mysqli->prepare("SELECT * FROM cart");
 $query->execute();
 
 $array = $query->get_result();

@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
     TextView error_password, error_email;
     Boolean exist;
     PostRequest post;
+    String result = "";
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -43,7 +44,6 @@ public class Login extends AppCompatActivity {
             String name = params[0];
             String password = params[1];
             String str_url = params[2];
-            String result = "";
 
             try {
                 // Creating a new URL connection with PHP.
@@ -80,9 +80,9 @@ public class Login extends AppCompatActivity {
 
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                Log.i("mal",e.getMessage());
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.i("exe",e.getMessage());
             }
             return result;
         }
@@ -93,12 +93,12 @@ public class Login extends AppCompatActivity {
             try {
 
                 Log.i("String", s);
-                String[] second_part = s.split(":");
-                String status = second_part[1];
-                Log.i("status", "" +status.equalsIgnoreCase("\"YES\"}"));
-                if (status.equalsIgnoreCase("\"YES\"}")) {
-                    exist = true;
-                    Log.i("exist:", " "+ exist);
+                if (s.equalsIgnoreCase("YES")) {
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "NO", Toast.LENGTH_SHORT).show();
                 }
 
             }catch(Exception e){
@@ -140,9 +140,7 @@ public class Login extends AppCompatActivity {
 
         name = email_entry.getText().toString();
         password = password_entry.getText().toString();
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/login.php";
-        post = new PostRequest();
-        post.execute(name,password,url);
+
 
         if(name.isEmpty() && password.isEmpty()){
             //error_password.setVisibility(View.VISIBLE);
@@ -158,15 +156,9 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
-
-            if(exist){
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(this,"User does not exist please Sign up",Toast.LENGTH_LONG).show();
-            }
-
+                url = "http://172.20.10.5/MobileFinalProject/BackEnd/login.php";
+                post = new PostRequest();
+                post.execute(name,password,url);
         }
     }
 

@@ -109,7 +109,7 @@ public class Add extends AppCompatActivity {
 
     public void addRec(View view){
 
-        url ="http://192.168.0.102/MobileFinalProject/BackEnd/insert_to_cookBook.php";
+        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_cookBook.php";
 
         name = recipe.getText().toString();
         calories = kcal.getText().toString();

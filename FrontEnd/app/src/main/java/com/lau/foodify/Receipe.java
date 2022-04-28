@@ -125,7 +125,7 @@ public class Receipe extends AppCompatActivity {
 
         rec.setText(receipe);
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_receipe.php";
+        url = "http://172.20.10.57/MobileFinalProject/BackEnd/get_receipe.php";
 
         DownloadTask task = new DownloadTask();
         task.execute(receipe,url);

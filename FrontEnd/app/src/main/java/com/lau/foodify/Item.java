@@ -82,7 +82,7 @@ public class Item extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item);
+        setContentView(R.layout.add_to_pantry);
 
         name = (EditText) findViewById(R.id.name_sign);
         weight = (EditText) findViewById(R.id.w_text);
@@ -93,7 +93,7 @@ public class Item extends AppCompatActivity {
 
     public void addPantry(View view){
 
-        url ="http://192.168.0.102/MobileFinalProject/BackEnd/insert_to_pantry_api.php";
+        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_pantry_api.php";
 
         iname = name.getText().toString();
         wei = weight.getText().toString();

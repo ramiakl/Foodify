@@ -63,7 +63,7 @@ public class AddToCart extends AppCompatActivity {
 
                 InputStream is = urlConnection.getInputStream();
                 urlConnection.disconnect();
-
+                Log.i("inputStream",is.toString());
                 //Catching exceptions
             } catch (MalformedURLException e) {
                 Log.i("exeOnPost",e.getMessage());
@@ -89,7 +89,7 @@ public class AddToCart extends AppCompatActivity {
 
     public void addCart(View view){
 
-        url ="http://192.168.0.102/MobileFinalProject/BackEnd/insert_to_cart.php";
+        url ="http://172.20.10.5/MobileFinalProject/BackEnd/insert_to_cart.php";
 
         iname = name.getText().toString();
         wei = weight.getText().toString();

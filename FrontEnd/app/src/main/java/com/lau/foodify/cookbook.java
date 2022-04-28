@@ -125,7 +125,7 @@ public class cookbook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        url = "http://192.168.0.102/MobileFinalProject/BackEnd/get_from_cookbook.php";
+        url = "http://172.20.10.5/MobileFinalProject/BackEnd/get_from_cookbook.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
 

@@ -2,25 +2,21 @@
 
 include ("db_info.php");
 
-$name = $_POST["name"];
-$password = $_POST["password"];
+$name = $_POST['name'];
+$password = hash("sha256", $mysqli->real_escape_string ($_POST['password']));
 
-$sql = "select * From user where username = '$name' and password = '$password'";  
+$query = $mysqli->prepare("SELECT user_id From user where username = ? AND password = ?");
+$query->bind_param("ss", $name, $password);
+$query->execute();
+$query->store_result();
+$query->fetch();
 
-$result = mysqli_query($con ,$sql);  
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-$count = mysqli_num_rows($result);  
-          
-$response = [];
 
-if($count == 1){  
-    $response["status"] = "YES"; 
+if($query->num_rows > 0){  
+    echo("YES"); 
 }  
 else{  
-    $response["status"] = "NO";  
+    echo("NO");  
 }     
-
-$json_response = json_encode($response);
-echo $json_response;
 
 ?>
