@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 public class AddToCart extends AppCompatActivity {
 
     EditText name, weight, price_txt;
-    String iname,wei,price,url,ip;
+    String iname,wei,price,url,ip, user_id;
     Intent intent;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -36,6 +36,9 @@ public class AddToCart extends AppCompatActivity {
             String weight = params[1];
             String price = params[2];
             String str_url = params[3];
+
+            intent = getIntent();
+            user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -52,7 +55,8 @@ public class AddToCart extends AppCompatActivity {
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
                         +URLEncoder.encode("weight", "UTF-8")+"="+URLEncoder.encode(weight, "UTF-8")+"&"
-                        +URLEncoder.encode("price", "UTF-8")+"="+URLEncoder.encode(price, "UTF-8");
+                        +URLEncoder.encode("price", "UTF-8")+"="+URLEncoder.encode(price, "UTF-8")+"&"
+                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
                 Log.i("String2",post_data);
 
@@ -101,6 +105,7 @@ public class AddToCart extends AppCompatActivity {
 
 
        intent = new Intent(getApplicationContext(), Cart.class);
+       intent.putExtra("user_id",user_id);
        startActivity(intent);
     }
 }

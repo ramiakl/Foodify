@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 
 public class Add extends AppCompatActivity {
 
-    String name,calories,cooktime,ingredients,instructions,url,ip;
+    String name,calories,cooktime,ingredients,instructions,url,ip, user_id;
     EditText recipe, kcal, time, ing, inst;
     Intent intent;
 
@@ -40,7 +40,8 @@ public class Add extends AppCompatActivity {
             String calories = params[3];
             String time = params[4];
             String str_url = params[5];
-
+            intent = getIntent();
+            user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -59,7 +60,8 @@ public class Add extends AppCompatActivity {
                         +URLEncoder.encode("instructions", "UTF-8")+"="+URLEncoder.encode(instructions, "UTF-8")+"&"
                         +URLEncoder.encode("ingredients", "UTF-8")+"="+URLEncoder.encode(ingredients, "UTF-8")+"&"
                         +URLEncoder.encode("calories", "UTF-8")+"="+URLEncoder.encode(calories, "UTF-8")+"&"
-                        +URLEncoder.encode("time", "UTF-8")+"="+URLEncoder.encode(time, "UTF-8");
+                        +URLEncoder.encode("time", "UTF-8")+"="+URLEncoder.encode(time, "UTF-8")+"&"
+                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
                 Log.i("String",post_data);
 
@@ -122,6 +124,7 @@ public class Add extends AppCompatActivity {
             post.execute(name, instructions, ingredients, calories, cooktime, url);
 
             intent = new Intent(getApplicationContext(), Cookbook.class);
+            intent.putExtra("user_id",user_id);
             startActivity(intent);
         }
 

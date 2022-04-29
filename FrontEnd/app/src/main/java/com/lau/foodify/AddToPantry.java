@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 public class AddToPantry extends AppCompatActivity {
 
     EditText name, weight, location, doe;
-    String iname,loc,wei,time,url,ip;
+    String iname,loc,wei,time,url,ip, user_id;
     Intent intent;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -37,6 +37,9 @@ public class AddToPantry extends AppCompatActivity {
             String location = params[2];
             String doe = params[3];
             String str_url = params[4];
+
+            intent = getIntent();
+            user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -54,7 +57,8 @@ public class AddToPantry extends AppCompatActivity {
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
                         +URLEncoder.encode("weight", "UTF-8")+"="+URLEncoder.encode(weight, "UTF-8")+"&"
                         +URLEncoder.encode("location", "UTF-8")+"="+URLEncoder.encode(location, "UTF-8")+"&"
-                        +URLEncoder.encode("doe", "UTF-8")+"="+URLEncoder.encode(doe, "UTF-8");
+                        +URLEncoder.encode("doe", "UTF-8")+"="+URLEncoder.encode(doe, "UTF-8")+"&"
+                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
                 Log.i("Post Data",post_data);
 
@@ -104,6 +108,7 @@ public class AddToPantry extends AppCompatActivity {
         post.execute(iname,wei,loc,time,url);
 
         intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 }

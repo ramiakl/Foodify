@@ -169,9 +169,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void addItem(View vew){
         intent = new Intent(getApplicationContext(), AddToPantry.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 

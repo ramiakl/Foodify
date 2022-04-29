@@ -17,10 +17,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,7 +36,7 @@ public class Cookbook extends AppCompatActivity {
     String url;
     Intent intent;
     EditText search;
-    String recipe_name, api_url, chosen_recipe, ip;
+    String recipe_name, api_url, chosen_recipe, ip, user_id;
 
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -43,14 +47,33 @@ public class Cookbook extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
+            intent = getIntent();
+            user_id = intent.getStringExtra("user_id");
 
             try {
+                // Creating a new URL connection with PHP.
                 url = new URL(urls[0]);
-                http = (HttpURLConnection) url.openConnection(); //Declaring the Url connection object
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
 
-                InputStream inputStream = http.getInputStream(); //initializing InputStream Object to pass data.
+                OutputStream out = urlConnection.getOutputStream(); //Initializing OutputStream Object.
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //Initializing BufferedReader Object to Read data.
+                BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
+
+                // Setting the variables to be sent to the URL
+                String post_data = URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
+
+                br.write(post_data); //Writing and sending data.
+                br.flush();
+                br.close();
+                out.close();
+
+                InputStream is = urlConnection.getInputStream();
+
+                urlConnection.disconnect();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
                 String line = reader.readLine(); //Get the data ad store it in a String.
 
                 while (line != null) {
@@ -107,6 +130,7 @@ public class Cookbook extends AppCompatActivity {
                         chosen_recipe = gridAdapter.getItem(i);
                         Intent intent = new Intent(getApplicationContext(), Receipe.class);
                         intent.putExtra("Chosen",chosen_recipe);
+                        intent.putExtra("user_id",user_id);
                         startActivity(intent);
                     }
                 });
@@ -134,14 +158,17 @@ public class Cookbook extends AppCompatActivity {
 
     public void topantry(View view){
         intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 

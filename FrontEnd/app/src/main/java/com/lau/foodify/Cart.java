@@ -120,9 +120,7 @@ public class Cart extends AppCompatActivity {
                     item_price[i]= first.getString("price");
                 }
 
-
                 Log.i("Result", Arrays.toString(food));
-
 
                 gridAdapter = new GridPantryCart(getApplicationContext(),food,weight,item_price);
                 binding.shoppingList.setAdapter(gridAdapter);
@@ -165,6 +163,7 @@ public class Cart extends AppCompatActivity {
         intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
+
     public void addCart(View view){
         intent = new Intent(getApplicationContext(), AddToCart.class);
         intent.putExtra("user_id",user_id);

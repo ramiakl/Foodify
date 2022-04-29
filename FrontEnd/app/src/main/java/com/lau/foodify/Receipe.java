@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -27,7 +28,7 @@ import java.util.Arrays;
 public class Receipe extends AppCompatActivity {
 
     TextView rec, duration, cal, ingredients, instructions ;
-    String name, time, calories,ing ,inst, url, ip;
+    String name, time, calories,ing ,inst, url, ip, user_id;
 
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -52,7 +53,8 @@ public class Receipe extends AppCompatActivity {
                 BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
 
                 // Setting the variables to be sent to the URL
-                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
+                String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
+                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
                 Log.i("String",post_data);
 
@@ -130,6 +132,12 @@ public class Receipe extends AppCompatActivity {
         DownloadTask task = new DownloadTask();
         task.execute(receipe,url);
 
+    }
+
+    public void back(View view){
+        Intent intent = new Intent(getApplicationContext(), Receipe.class);
+        intent.putExtra("user_id",user_id);
+        startActivity(intent);
 
     }
 }
