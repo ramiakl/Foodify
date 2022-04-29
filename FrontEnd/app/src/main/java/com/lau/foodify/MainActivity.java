@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     EditText delete;
     ImageView delete_icon;
-    String url,ip;
+    String url,ip, user_id;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
 
@@ -49,14 +49,34 @@ public class MainActivity extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
+            intent = getIntent();
+            user_id = intent.getStringExtra("user_id");
 
             try {
+                // Creating a new URL connection with PHP.
                 url = new URL(urls[0]);
-                http = (HttpURLConnection) url.openConnection(); //Declaring the Url connection object
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
 
-                InputStream inputStream = http.getInputStream(); //initializing InputStream Object to pass data.
+                OutputStream out = urlConnection.getOutputStream(); //Initializing OutputStream Object.
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //Initializing BufferedReader Object to Read data.
+                BufferedWriter br = new BufferedWriter(new OutputStreamWriter(out, "UTF-8")); //Initializing BufferedWriter Object
+
+                // Setting the variables to be sent to the URL
+                String post_data = URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
+
+                br.write(post_data); //Writing and sending data.
+                br.flush();
+                br.close();
+                out.close();
+
+                InputStream is = urlConnection.getInputStream();
+
+                urlConnection.disconnect();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
                 String line = reader.readLine(); //Get the data ad store it in a String.
 
                 while (line != null) {

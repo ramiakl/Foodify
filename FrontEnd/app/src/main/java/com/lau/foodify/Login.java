@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -98,10 +99,12 @@ public class Login extends AppCompatActivity {
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    JSONObject obj = new JSONObject(s);
+                    JSONArray jsonArray = new JSONArray(s);
+                    JSONObject obj = (JSONObject) jsonArray.get(0);
                     user_id = obj.getString("user_id");
                     intent.putExtra("user_id",user_id);
-                    startActivity(intent);                }
+                    startActivity(intent);
+                }
 
             }catch(Exception e){
                     Log.i("exeOnPost", e.getMessage());

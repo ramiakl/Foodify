@@ -77,10 +77,8 @@ public class Cookbook extends AppCompatActivity {
 
                 //Checking whether the JSON array has some value or not
                 if (jsonArray != null) {
-
                     //Iterating JSON array
                     for (int i=0;i<jsonArray.length();i++){
-
                         //Adding each element of JSON array into ArrayList
                         listdata.add(jsonArray.get(i));
                     }
@@ -131,8 +129,6 @@ public class Cookbook extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        search = (EditText) findViewById(R.id.cookbook_search);
 
     }
 
