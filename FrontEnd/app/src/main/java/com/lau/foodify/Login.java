@@ -28,8 +28,8 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
-    String name , password, url, ip;
-    TextView error_password, error_email;
+    String name , password, url, ip, user_id;
+    TextView error_password, error_e, mail;
     Boolean exist;
     PostRequest post;
     String result = "";
@@ -93,13 +93,15 @@ public class Login extends AppCompatActivity {
             try {
 
                 Log.i("String", s);
-                if (s.equalsIgnoreCase("YES")) {
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
-                }
-                else{
+                if (s.equalsIgnoreCase("NO")) {
                     Toast.makeText(getApplicationContext(), "NO", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    JSONObject obj = new JSONObject(s);
+                    user_id = obj.getString("user_id");
+                    intent.putExtra("user_id",user_id);
+                    startActivity(intent);                }
 
             }catch(Exception e){
                     Log.i("exeOnPost", e.getMessage());
