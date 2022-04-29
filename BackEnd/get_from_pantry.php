@@ -2,7 +2,9 @@
 
 include("db_info.php");
 
-$query = $mysqli->prepare("SELECT * FROM pantry;");
+$id = $_POST["user_id"];
+
+$query = $mysqli->prepare("SELECT * FROM pantry Where user_id = '$id';");
 $query->execute();
 
 $array = $query->get_result();

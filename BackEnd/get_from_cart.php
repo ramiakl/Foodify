@@ -2,8 +2,9 @@
 
 include("db_info.php");
 
+$id = $_POST["user_id"];
 
-$query = $mysqli->prepare("SELECT * FROM cart");
+$query = $mysqli->prepare("SELECT * FROM cart Where user_id = '$id';");
 $query->execute();
 
 $array = $query->get_result();
