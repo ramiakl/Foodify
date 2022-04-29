@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 InputStream is = urlConnection.getInputStream();
 
                 urlConnection.disconnect();
-
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
                 String line = reader.readLine(); //Get the data ad store it in a String.
 
@@ -156,14 +155,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void tocookbook(View view){
         intent = new Intent(getApplicationContext(), Cookbook.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
+        intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
