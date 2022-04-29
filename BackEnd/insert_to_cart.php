@@ -6,7 +6,7 @@ include ("db_info.php");
 $item = $_POST["name"];
 $price = $_POST["price"];
 $weight = $_POST["weight"];
-$id = 14;
+$id = $_POST["user_id"];
 
 $response = [];
 $response["status"] = "Completed!";

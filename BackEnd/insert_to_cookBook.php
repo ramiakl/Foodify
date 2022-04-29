@@ -8,7 +8,7 @@ $calories = $_POST["calories"];
 $instructions = $_POST["instructions"];
 $time = $_POST["time"];
 $ing = $_POST["ingredients"];
-$id = 14;
+$id = $_POST["user_id"];
 
 $query = $mysqli->prepare("INSERT INTO recipe (Recipe_name, calories, Instructions, cooktime, Ingredients,user_id) VALUES (?, ?, ?, ?,?,?)");
 $query->bind_param("sssssi", $recipe_name, $calories,$instructions,$time,$ing,$id);

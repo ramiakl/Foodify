@@ -7,7 +7,7 @@ $item = $_POST["name"];
 $expiration_date = $_POST["doe"];
 $location = $_POST["location"];
 $weight = $_POST["weight"];
-$id = 14;
+$id = $_POST["user_id"];
 
 $response = [];
 $response["status"] = "Completed!";
