@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
@@ -19,12 +21,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class Add extends AppCompatActivity {
 
     String name,calories,cooktime,ingredients,instructions,url,ip, user_id;
     EditText recipe, kcal, time, ing, inst;
     Intent intent;
+    Spinner spinner;
 
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -96,6 +100,17 @@ public class Add extends AppCompatActivity {
         time = (EditText) findViewById(R.id.cooking_time);
         ing = (EditText) findViewById(R.id.ing);
         inst = (EditText) findViewById(R.id.instru);
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Salad");
+        list.add("Soup");
+        list.add("Sandwich");
+        list.add("Platter");
+
+        //Assigning an adapter and the list as dropdown
+        ArrayAdapter<String> my_adapter = new ArrayAdapter<String> (this, android.R.layout.simple_spinner_dropdown_item, list);
+        spinner.setAdapter(my_adapter);
 
         ingredients = "";
     }
