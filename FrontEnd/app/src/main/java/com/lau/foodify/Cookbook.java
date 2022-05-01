@@ -35,9 +35,8 @@ public class Cookbook extends AppCompatActivity {
     GridAdapter gridAdapter;
     String url;
     Intent intent;
-    EditText search;
-    String recipe_name, api_url, chosen_recipe, ip, user_id;
-
+    String chosen_recipe, ip, user_id;
+    int[] images;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -115,13 +114,13 @@ public class Cookbook extends AppCompatActivity {
                     obj = (JSONObject) jsonArray.get(i);
                     name[i] = obj.getString("Recipe_name");
                     time[i] = obj.getString("cooktime");
+                    images[i] = Integer.parseInt(obj.getString("image"));
                 }
 
-                Log.i("Recipe",Arrays.toString(name));
+                Log.i("images",Arrays.toString(images));
 
-                int[] flowerImages = {R.drawable.pizza,R.drawable.burger,R.drawable.pizza,R.drawable.burger};
 
-                gridAdapter = new GridAdapter(getApplicationContext(),name,time,flowerImages);
+                gridAdapter = new GridAdapter(getApplicationContext(),name,time,images);
                 binding.gridView.setAdapter(gridAdapter);
 
                 binding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
