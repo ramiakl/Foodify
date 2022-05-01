@@ -29,6 +29,7 @@ public class Add extends AppCompatActivity {
     EditText recipe, kcal, time, ing, inst;
     Intent intent;
     Spinner spinner;
+    int image;
 
 
     public class PostRequest extends AsyncTask<String, Void, String> {
@@ -43,7 +44,8 @@ public class Add extends AppCompatActivity {
             String ingredients = params[2];
             String calories = params[3];
             String time = params[4];
-            String str_url = params[5];
+            String image = params[5];
+            String str_url = params[6];
             intent = getIntent();
             user_id = intent.getStringExtra("user_id");
 
@@ -65,7 +67,8 @@ public class Add extends AppCompatActivity {
                         +URLEncoder.encode("ingredients", "UTF-8")+"="+URLEncoder.encode(ingredients, "UTF-8")+"&"
                         +URLEncoder.encode("calories", "UTF-8")+"="+URLEncoder.encode(calories, "UTF-8")+"&"
                         +URLEncoder.encode("time", "UTF-8")+"="+URLEncoder.encode(time, "UTF-8")+"&"
-                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
+                        +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8")+"&"
+                        +URLEncoder.encode("image", "UTF-8")+"="+URLEncoder.encode(image, "UTF-8");
 
                 Log.i("String",post_data);
 
@@ -131,12 +134,24 @@ public class Add extends AppCompatActivity {
         cooktime = time.getText().toString();
         instructions = inst.getText().toString();
 
+        String type = spinner.getSelectedItem().toString();
+
+        switch (type){
+            case "Salad": image = R.drawable.salad;
+
+            case "Sandwich": image = R.drawable.sandwich;
+
+            case "Soup": image = R.drawable.soup;
+
+            case "Platter": image = R.drawable.platter;
+        }
+
         if(name.isEmpty() || calories.isEmpty() || cooktime.isEmpty() || instructions.isEmpty()){
-            Toast.makeText(this,"Bala manyake",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please fill all entries",Toast.LENGTH_SHORT).show();
         }
         else {
             PostRequest post = new PostRequest();
-            post.execute(name, instructions, ingredients, calories, cooktime, url);
+            post.execute(name, instructions, ingredients, calories, cooktime,""+image,url);
 
             intent = new Intent(getApplicationContext(), Cookbook.class);
             intent.putExtra("user_id",user_id);
