@@ -15,7 +15,7 @@
         android:numColumns="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.675">
@@ -26,6 +26,7 @@
         android:id="@+id/divider3"
         android:layout_width="wrap_content"
         android:layout_height="75dp"
+        android:background="?android:attr/listDivider"
         android:backgroundTint="#9AD5F6"
         android:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shopping_list"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/delete_name"

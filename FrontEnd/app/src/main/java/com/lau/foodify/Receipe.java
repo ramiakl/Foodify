@@ -28,8 +28,8 @@ import java.util.Arrays;
 public class Receipe extends AppCompatActivity {
 
     TextView rec, duration, cal, ingredients, instructions ;
-    String name, time, calories,ing ,inst, url, ip, user_id;
-
+    String name, time, calories,ing ,inst, url, user_id;
+    String ip =  "192.168.0.101";
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -85,7 +85,7 @@ public class Receipe extends AppCompatActivity {
             super.onPostExecute(s);
             try{
 
-                Log.i("Ayre", s);
+                Log.i("string", s);
 
                 JSONArray jsonArray = new JSONArray(s);
 

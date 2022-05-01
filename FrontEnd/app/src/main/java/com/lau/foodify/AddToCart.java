@@ -22,8 +22,9 @@ import java.net.URLEncoder;
 public class AddToCart extends AppCompatActivity {
 
     EditText name, weight, price_txt;
-    String iname,wei,price,url,ip, user_id;
+    String iname,wei,price,url, user_id;
     Intent intent;
+    String ip =  "192.168.0.101";
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 

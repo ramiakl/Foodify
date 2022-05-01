@@ -24,10 +24,9 @@ import java.net.URLEncoder;
 public class Signup extends AppCompatActivity {
     Intent intent;
     EditText email_entry, password_entry, name_entry;
-    String email , password, name, ip;
-    TextView error_password, error_email;
+    String email , password, name, url;
     PostRequestSignUp post;
-    String url;
+    String ip =  "192.168.0.101";
 
     public class PostRequestSignUp extends AsyncTask<String, Void, String> {
 

@@ -35,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     EditText delete;
     ImageView delete_icon;
-    String url,ip, user_id;
+    String url, user_id;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
+    String ip =  "192.168.0.101";
 
     MainActivityBinding binding;
 
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
-
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();

@@ -25,12 +25,12 @@ import java.util.ArrayList;
 
 public class Add extends AppCompatActivity {
 
-    String name,calories,cooktime,ingredients,instructions,url,ip, user_id;
+    String name,calories,cooktime,ingredients,instructions,url, user_id;
     EditText recipe, kcal, time, ing, inst;
     Intent intent;
     Spinner spinner;
     int image;
-
+    String ip =  "192.168.0.101";
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 

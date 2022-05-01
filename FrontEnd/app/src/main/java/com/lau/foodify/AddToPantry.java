@@ -22,8 +22,9 @@ import java.net.URLEncoder;
 public class AddToPantry extends AppCompatActivity {
 
     EditText name, weight, location, doe;
-    String iname,loc,wei,time,url,ip, user_id;
+    String iname,loc,wei,time,url, user_id;
     Intent intent;
+    String ip =  "192.168.0.101";
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 

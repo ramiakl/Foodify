@@ -35,8 +35,9 @@ public class Cookbook extends AppCompatActivity {
     GridAdapter gridAdapter;
     String url;
     Intent intent;
-    String chosen_recipe, ip, user_id;
+    String chosen_recipe, user_id;
     int[] images;
+    String ip =  "192.168.0.101";
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -108,6 +109,7 @@ public class Cookbook extends AppCompatActivity {
 
                 name = new String[jsonArray.length()];
                 time = new String[jsonArray.length()];
+                images = new int[jsonArray.length()];
 
                 JSONObject obj;
                 for(int i=0; i<listdata.size();i++){

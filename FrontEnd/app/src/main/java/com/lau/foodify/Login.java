@@ -29,11 +29,12 @@ import java.net.URLEncoder;
 public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
-    String name , password, url, ip, user_id;
+    String name , password, url, user_id;
     TextView error_password, error_e, mail;
     Boolean exist;
     PostRequest post;
     String result = "";
+    String ip =  "192.168.0.101";
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -95,7 +96,7 @@ public class Login extends AppCompatActivity {
 
                 Log.i("String", s);
                 if (s.equalsIgnoreCase("NO")) {
-                    Toast.makeText(getApplicationContext(), "NO", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User does not exist please sign up", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);

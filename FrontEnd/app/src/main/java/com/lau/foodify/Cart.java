@@ -33,11 +33,12 @@ import java.util.Arrays;
 public class Cart extends AppCompatActivity {
 
     CartBinding binding;
-    String url, ip, user_id;
+    String url, user_id;
     EditText delete;
     String[] food,weight,item_price;
     GridPantryCart gridAdapter;
     Intent intent;
+    String ip =  "192.168.0.101";
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -49,7 +50,7 @@ public class Cart extends AppCompatActivity {
             HttpURLConnection http; //Initializing the url connection object
             intent = getIntent();
             user_id = intent.getStringExtra("user_id");
-
+            Log.i("id",user_id);
             try {
                 // Creating a new URL connection with PHP.
                 url = new URL(urls[0]);
