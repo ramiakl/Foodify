@@ -98,7 +98,7 @@ public class AddToCart extends AppCompatActivity {
 
     public void addCart(View view){
         // redirect to the add to cart api
-        
+
         url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_cart.php";
 
         iname = name.getText().toString();

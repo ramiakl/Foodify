@@ -25,6 +25,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+// Add a receipe to the database
+
 public class Add extends AppCompatActivity {
 
     String name,calories,cooktime,ingredients,instructions,url, user_id;
@@ -38,7 +40,7 @@ public class Add extends AppCompatActivity {
 
 
     public class PostRequest extends AsyncTask<String, Void, String> {
-
+        // Post the data of the receipe to add it to the database
         @Override
         protected String doInBackground(String... params) {
             //The method take String parameters and send data to the received url.
@@ -51,9 +53,8 @@ public class Add extends AppCompatActivity {
             String time = params[4];
             String image = params[5];
             String str_url = params[6];
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
-            user_id = shared.getString("user_id", "");
+
+            user_id = shared.getString("user_id", "");// getting the id of the logged in user
             try {
                 // Creating a new URL connection with PHP.
                 URL url = new URL(str_url);
@@ -75,22 +76,19 @@ public class Add extends AppCompatActivity {
                         +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8")+"&"
                         +URLEncoder.encode("image", "UTF-8")+"="+URLEncoder.encode(image, "UTF-8");
 
-                Log.i("String",post_data);
-
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-                Log.i("Stream",is.toString());
                 urlConnection.disconnect();
 
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
@@ -118,7 +116,7 @@ public class Add extends AppCompatActivity {
         list.add("Sandwich");
         list.add("Platter");
 
-        //Assigning an adapter and the list as dropdown
+        //Assigning an adapter and the list as dropdown of the types of receipes for the image in the cookbook
         ArrayAdapter<String> my_adapter = new ArrayAdapter<String> (this, android.R.layout.simple_spinner_dropdown_item, list);
         spinner.setAdapter(my_adapter);
 
@@ -126,13 +124,14 @@ public class Add extends AppCompatActivity {
     }
 
     public void addIng(View view){
+        // Concatinating the ingredients
 
         ingredients += "\n"+ing.getText().toString();
         ing.setText("");
-        Log.i("Ingredients",ingredients);
     }
 
     public void addRec(View view){
+        // redirect to the api that post in the cookbook
 
         url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_cookBook.php";
 
@@ -143,7 +142,7 @@ public class Add extends AppCompatActivity {
 
         String type = spinner.getSelectedItem().toString();
 
-        switch (type){
+        switch (type){//based on the type of the recipe we display an image
 
             case "Salad":
                 image = R.drawable.salad;
@@ -171,7 +170,6 @@ public class Add extends AppCompatActivity {
             post.execute(name, instructions, ingredients, calories, cooktime,""+image,url);
 
             intent = new Intent(getApplicationContext(), Cookbook.class);
-            //intent.putExtra("user_id",user_id);
             startActivity(intent);
         }
 

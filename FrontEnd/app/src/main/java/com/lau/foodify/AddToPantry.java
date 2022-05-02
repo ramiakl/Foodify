@@ -21,7 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-
+// Same as add to cart but it adds to the pantry
 public class AddToPantry extends AppCompatActivity {
 
     EditText name, weight, location, doe;
@@ -43,9 +43,6 @@ public class AddToPantry extends AppCompatActivity {
             String doe = params[3];
             String str_url = params[4];
 
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
-
             try {
                 // Creating a new URL connection with PHP.
                 URL url = new URL(str_url);
@@ -65,22 +62,19 @@ public class AddToPantry extends AppCompatActivity {
                         +URLEncoder.encode("doe", "UTF-8")+"="+URLEncoder.encode(doe, "UTF-8")+"&"
                         +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
-                Log.i("Post Data",post_data);
-
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-                Log.i("Stream",is.toString());
                 urlConnection.disconnect();
 
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
