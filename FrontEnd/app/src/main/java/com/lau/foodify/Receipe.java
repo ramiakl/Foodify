@@ -1,3 +1,6 @@
+//Once the user Select a receipe in the cookbook this page will display the results
+// of the receipe he selected
+
 package com.lau.foodify;
 
 import androidx.annotation.DoNotInline;
@@ -29,10 +32,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Receipe extends AppCompatActivity {
+//This class display the receipe that the user chooses
 
     TextView rec, duration, cal, ingredients, instructions ;
     String name, time, calories,ing ,inst, url, user_id;
-    String ip =  "192.168.0.101";
+    String ip =  "192.168.0.101";// the ip adress for the api
     SharedPreferences shared;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -60,8 +64,6 @@ public class Receipe extends AppCompatActivity {
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
                         +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
-                Log.i("String",post_data);
-
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
@@ -72,7 +74,7 @@ public class Receipe extends AppCompatActivity {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
 
                 String line = reader.readLine(); //Get the data ad store it in a String.
-                Log.i("here",line);
+                Log.i("line",line);
                 while (line != null) {
                     result += line;
                     line = reader.readLine(); //Concatenate each line
@@ -80,7 +82,7 @@ public class Receipe extends AppCompatActivity {
 
 
             } catch (Exception e) {
-                Log.i("exeDOin", e.getMessage());
+                e.printStackTrace();
                 return null;
             }
             return result;
@@ -90,13 +92,10 @@ public class Receipe extends AppCompatActivity {
             // This method converts the JSON Object received into a String.
             super.onPostExecute(s);
             try{
-
-                Log.i("string", s);
-
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
-                JSONObject first = (JSONObject) jsonArray.get(0);
+                JSONObject first = (JSONObject) jsonArray.get(0);// there is only one receipe therefore we take the only one at 0
 
                 name = first.getString("Recipe_name");
                 calories = first.getString("calories");
@@ -104,16 +103,14 @@ public class Receipe extends AppCompatActivity {
                 time = first.getString("cooktime");
                 inst = first.getString("Instructions");
 
-                Log.i("Result", name+calories+ing+inst+time);
-
-
+                // displaying the results
                 duration.setText(time);
                 cal.setText(calories);
                 ingredients.setText(ing);
                 instructions.setText(inst);
 
             }catch(Exception e){
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -124,10 +121,11 @@ public class Receipe extends AppCompatActivity {
         setContentView(R.layout.activity_receipe);
 
         shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
-        user_id = shared.getString("user_id","");
+        user_id = shared.getString("user_id","");// take the id of the logged in user
 
         Intent x = getIntent();
-        String receipe = x.getStringExtra("Chosen");
+        String receipe = x.getStringExtra("Chosen");// take the receipe that was selected in the cookbook
+
         rec = (TextView) findViewById(R.id.rec_name);
         duration = (TextView) findViewById(R.id.duration);
         cal = (TextView) findViewById(R.id.calo);
@@ -144,6 +142,7 @@ public class Receipe extends AppCompatActivity {
     }
 
     public void back(View view){
+        // return to the cookbook
         Intent intent = new Intent(getApplicationContext(), Cookbook.class);
         startActivity(intent);
 
