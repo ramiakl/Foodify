@@ -117,10 +117,9 @@ public class AddToPantry extends AppCompatActivity {
         }else {
             PostRequest post = new PostRequest();
             post.execute(iname, wei, loc, time, url);
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         }
 
-        intent = new Intent(getApplicationContext(), MainActivity.class);
-        //intent.putExtra("user_id",user_id);
-        startActivity(intent);
     }
 }

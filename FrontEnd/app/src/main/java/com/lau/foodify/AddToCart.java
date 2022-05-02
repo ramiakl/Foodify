@@ -23,6 +23,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class AddToCart extends AppCompatActivity {
+//This class adds an item to the shopping cart
 
     EditText name, weight, price_txt;
     String iname,wei,price,url, user_id;
@@ -31,7 +32,7 @@ public class AddToCart extends AppCompatActivity {
     SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
-
+        // Post data to the cart table in the database
         @Override
         protected String doInBackground(String... params) {
             //The method take String parameters and send data to the received url.
@@ -41,9 +42,6 @@ public class AddToCart extends AppCompatActivity {
             String weight = params[1];
             String price = params[2];
             String str_url = params[3];
-
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -63,7 +61,6 @@ public class AddToCart extends AppCompatActivity {
                         +URLEncoder.encode("price", "UTF-8")+"="+URLEncoder.encode(price, "UTF-8")+"&"
                         +URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
 
-                Log.i("String2",post_data);
 
                 br.write(post_data); //Writing and sending data.
                 br.flush();
@@ -72,12 +69,12 @@ public class AddToCart extends AppCompatActivity {
 
                 InputStream is = urlConnection.getInputStream();
                 urlConnection.disconnect();
-                Log.i("inputStream",is.toString());
+
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
@@ -91,7 +88,7 @@ public class AddToCart extends AppCompatActivity {
         setContentView(R.layout.add_to_cart);
 
         shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
-        user_id = shared.getString("user_id",user_id);
+        user_id = shared.getString("user_id",user_id);// getting the id of the logged in user to add it in the cart table
 
         name = (EditText) findViewById(R.id.name_sign);
         weight = (EditText) findViewById(R.id.w_text);
@@ -100,7 +97,8 @@ public class AddToCart extends AppCompatActivity {
     }
 
     public void addCart(View view){
-
+        // redirect to the add to cart api
+        
         url ="http://"+ip+"/MobileFinalProject/BackEnd/insert_to_cart.php";
 
         iname = name.getText().toString();
@@ -112,11 +110,10 @@ public class AddToCart extends AppCompatActivity {
         }else {
             PostRequest post = new PostRequest();
             post.execute(iname, wei, price, url);
+
+            intent = new Intent(getApplicationContext(), Cart.class);
+            startActivity(intent);
         }
 
-
-       intent = new Intent(getApplicationContext(), Cart.class);
-       //intent.putExtra("user_id",user_id);
-       startActivity(intent);
     }
 }
