@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -105,10 +106,13 @@ public class AddToCart extends AppCompatActivity {
         iname = name.getText().toString();
         wei = weight.getText().toString();
         price = price_txt.getText().toString();
-        Log.i("Abel",iname+wei+price);
 
-       PostRequest post = new PostRequest();
-       post.execute(iname,wei,price,url);
+        if(iname.isEmpty() || wei.isEmpty() || price.isEmpty()){
+            Toast.makeText(this,"Please fill all entries",Toast.LENGTH_SHORT).show();
+        }else {
+            PostRequest post = new PostRequest();
+            post.execute(iname, wei, price, url);
+        }
 
 
        intent = new Intent(getApplicationContext(), Cart.class);

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -111,8 +112,12 @@ public class AddToPantry extends AppCompatActivity {
         time = doe.getText().toString();
         loc = location.getText().toString();
 
-        PostRequest post = new PostRequest();
-        post.execute(iname,wei,loc,time,url);
+        if(iname.isEmpty() || wei.isEmpty() || loc.isEmpty() || time.isEmpty()){
+            Toast.makeText(this,"Please fill all entries",Toast.LENGTH_SHORT).show();
+        }else {
+            PostRequest post = new PostRequest();
+            post.execute(iname, wei, loc, time, url);
+        }
 
         intent = new Intent(getApplicationContext(), MainActivity.class);
         //intent.putExtra("user_id",user_id);
