@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ public class AddToPantry extends AppCompatActivity {
     String iname,loc,wei,time,url, user_id;
     Intent intent;
     String ip =  "192.168.0.101";
+    SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -39,8 +42,8 @@ public class AddToPantry extends AppCompatActivity {
             String doe = params[3];
             String str_url = params[4];
 
-            intent = getIntent();
-            user_id = intent.getStringExtra("user_id");
+            //intent = getIntent();
+            //user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -89,6 +92,9 @@ public class AddToPantry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_to_pantry);
 
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
+        user_id = shared.getString("user_id","");
+
         name = (EditText) findViewById(R.id.name_sign);
         weight = (EditText) findViewById(R.id.w_text);
         location = (EditText) findViewById(R.id.location);
@@ -109,7 +115,7 @@ public class AddToPantry extends AppCompatActivity {
         post.execute(iname,wei,loc,time,url);
 
         intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 }

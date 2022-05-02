@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,8 @@ public class Cookbook extends AppCompatActivity {
     int[] images;
     String ip =  "192.168.0.101";
 
+    SharedPreferences shared;
+
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
 
@@ -47,8 +51,8 @@ public class Cookbook extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            intent = getIntent();
-            user_id = intent.getStringExtra("user_id");
+            //intent = getIntent();
+            //user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -148,6 +152,9 @@ public class Cookbook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
+        user_id = shared.getString("user_id","");
+
         url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_cookbook.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
@@ -159,17 +166,17 @@ public class Cookbook extends AppCompatActivity {
 
     public void topantry(View view){
         intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 

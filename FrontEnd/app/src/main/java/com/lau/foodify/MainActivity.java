@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
     String ip =  "192.168.0.101";
+    SharedPreferences shared;
 
     MainActivityBinding binding;
 
@@ -50,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            intent = getIntent();
-            user_id = intent.getStringExtra("user_id");
+            //intent = getIntent();
+            //user_id = intent.getStringExtra("user_id");
+            user_id = shared.getString("user_id","");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
 
         url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_pantry.php";
         DownloadTask task = new DownloadTask();
@@ -155,23 +160,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void tocookbook(View view){
         intent = new Intent(getApplicationContext(), Cookbook.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
     public void addItem(View vew){
         intent = new Intent(getApplicationContext(), AddToPantry.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
@@ -224,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
 
         String item_delete = delete.getText().toString();
 
-        url = "http://172.20.10.5/MobileFinalProject/BackEnd/delete_item_pantry.php";
+        url = "http://"+ip+"/MobileFinalProject/BackEnd/delete_item_pantry.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);

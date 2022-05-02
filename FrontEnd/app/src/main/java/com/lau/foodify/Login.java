@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,11 +32,10 @@ public class Login extends AppCompatActivity {
 
     EditText email_entry, password_entry;
     String name , password, url, user_id;
-    TextView error_password, error_e, mail;
-    Boolean exist;
     PostRequest post;
     String result = "";
     String ip =  "192.168.0.101";
+    SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
 
@@ -104,6 +105,7 @@ public class Login extends AppCompatActivity {
                     JSONObject obj = (JSONObject) jsonArray.get(0);
                     user_id = obj.getString("user_id");
                     intent.putExtra("user_id",user_id);
+                    shared.edit().putString("user_id",user_id).commit();
                     startActivity(intent);
                 }
 
@@ -112,15 +114,6 @@ public class Login extends AppCompatActivity {
             }
         }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
     }
 
 
@@ -139,7 +132,7 @@ public class Login extends AppCompatActivity {
         error_email.setVisibility(View.GONE);
         error_password.setVisibility(View.GONE);
 
-        exist = false;
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
     }
 
     public void login (View view){

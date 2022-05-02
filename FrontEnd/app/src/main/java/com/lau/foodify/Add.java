@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +34,9 @@ public class Add extends AppCompatActivity {
     int image;
     String ip =  "192.168.0.101";
 
+    SharedPreferences shared;
+
+
     public class PostRequest extends AsyncTask<String, Void, String> {
 
         @Override
@@ -46,9 +51,9 @@ public class Add extends AppCompatActivity {
             String time = params[4];
             String image = params[5];
             String str_url = params[6];
-            intent = getIntent();
-            user_id = intent.getStringExtra("user_id");
-
+            //intent = getIntent();
+            //user_id = intent.getStringExtra("user_id");
+            user_id = shared.getString("user_id", "");
             try {
                 // Creating a new URL connection with PHP.
                 URL url = new URL(str_url);
@@ -97,6 +102,8 @@ public class Add extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add);
+
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
 
         recipe = (EditText) findViewById(R.id.rec_name);
         kcal = (EditText) findViewById(R.id.calories);
@@ -154,7 +161,7 @@ public class Add extends AppCompatActivity {
             post.execute(name, instructions, ingredients, calories, cooktime,""+image,url);
 
             intent = new Intent(getApplicationContext(), Cookbook.class);
-            intent.putExtra("user_id",user_id);
+            //intent.putExtra("user_id",user_id);
             startActivity(intent);
         }
 

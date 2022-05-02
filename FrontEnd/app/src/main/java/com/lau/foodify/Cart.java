@@ -2,7 +2,9 @@ package com.lau.foodify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +42,9 @@ public class Cart extends AppCompatActivity {
     Intent intent;
     String ip =  "192.168.0.101";
 
+    SharedPreferences shared;
+
+
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
 
@@ -48,8 +53,8 @@ public class Cart extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            intent = getIntent();
-            user_id = intent.getStringExtra("user_id");
+            //intent = getIntent();
+            //user_id = intent.getStringExtra("user_id");
             Log.i("id",user_id);
             try {
                 // Creating a new URL connection with PHP.
@@ -138,6 +143,9 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
 
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
+        user_id = shared.getString("user_id","");
+
         url = "http://"+ip+"/MobileFinalProject/BackEnd/get_from_cart.php";
         DownloadTask task = new DownloadTask();
         task.execute(url);
@@ -151,23 +159,23 @@ public class Cart extends AppCompatActivity {
 
     public void tocookbook(View view){
         intent = new Intent(getApplicationContext(), Cookbook.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void topantry(View view){
         intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
     public void addCart(View view){
         intent = new Intent(getApplicationContext(), AddToCart.class);
-        intent.putExtra("user_id",user_id);
+        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 

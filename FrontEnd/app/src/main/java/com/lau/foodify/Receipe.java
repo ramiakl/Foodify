@@ -3,7 +3,10 @@ package com.lau.foodify;
 import androidx.annotation.DoNotInline;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Date;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +33,7 @@ public class Receipe extends AppCompatActivity {
     TextView rec, duration, cal, ingredients, instructions ;
     String name, time, calories,ing ,inst, url, user_id;
     String ip =  "192.168.0.101";
+    SharedPreferences shared;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
         // This class contains methods that enable url connection to an API to retrieve data stored in it.
@@ -67,11 +71,13 @@ public class Receipe extends AppCompatActivity {
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
                 String line = reader.readLine(); //Get the data ad store it in a String.
-
+                Log.i("here","hon");
                 while (line != null) {
                     result += line;
                     line = reader.readLine(); //Concatenate each line
+                    Log.i("line",line);
                 }
+
 
             } catch (Exception e) {
                 Log.i("exeDOin", e.getMessage());
@@ -117,6 +123,9 @@ public class Receipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipe);
 
+        shared = this.getSharedPreferences("com.lau.foodify", Context.MODE_PRIVATE);
+        user_id = shared.getString("user_id","");
+
         Intent x = getIntent();
         String receipe = x.getStringExtra("Chosen");
         rec = (TextView) findViewById(R.id.rec_name);
@@ -135,8 +144,7 @@ public class Receipe extends AppCompatActivity {
     }
 
     public void back(View view){
-        Intent intent = new Intent(getApplicationContext(), Receipe.class);
-        intent.putExtra("user_id",user_id);
+        Intent intent = new Intent(getApplicationContext(), Cookbook.class);
         startActivity(intent);
 
     }
