@@ -72,11 +72,10 @@ public class Receipe extends AppCompatActivity {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
 
                 String line = reader.readLine(); //Get the data ad store it in a String.
-                Log.i("here","hon");
+                Log.i("here",line);
                 while (line != null) {
                     result += line;
                     line = reader.readLine(); //Concatenate each line
-                    Log.i("line",line);
                 }
 
 
