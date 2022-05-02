@@ -51,8 +51,6 @@ public class Cookbook extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
 
             try {
                 // Creating a new URL connection with PHP.
@@ -135,7 +133,6 @@ public class Cookbook extends AppCompatActivity {
                         chosen_recipe = gridAdapter.getItem(i);
                         Intent intent = new Intent(getApplicationContext(), Receipe.class);
                         intent.putExtra("Chosen",chosen_recipe);
-                        intent.putExtra("user_id",user_id);
                         startActivity(intent);
                     }
                 });

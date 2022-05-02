@@ -144,14 +144,24 @@ public class Add extends AppCompatActivity {
         String type = spinner.getSelectedItem().toString();
 
         switch (type){
-            case "Salad": image = R.drawable.salad;
 
-            case "Sandwich": image = R.drawable.sandwich;
+            case "Salad":
+                image = R.drawable.salad;
+                break;
 
-            case "Soup": image = R.drawable.soup;
+            case "Sandwich":
+                image = R.drawable.sandwich;
+                break;
 
-            case "Platter": image = R.drawable.platter;
+            case "Soup":
+                image = R.drawable.soup;
+                break;
+
+            case "Platter":
+                image = R.drawable.platter;
+                break;
         }
+
 
         if(name.isEmpty() || calories.isEmpty() || cooktime.isEmpty() || instructions.isEmpty()){
             Toast.makeText(this,"Please fill all entries",Toast.LENGTH_SHORT).show();

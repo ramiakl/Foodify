@@ -70,6 +70,7 @@ public class Receipe extends AppCompatActivity {
                 InputStream is = urlConnection.getInputStream();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); //Initializing BufferedReader Object to Read data.
+
                 String line = reader.readLine(); //Get the data ad store it in a String.
                 Log.i("here","hon");
                 while (line != null) {
