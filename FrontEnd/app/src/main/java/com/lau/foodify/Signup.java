@@ -22,6 +22,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class Signup extends AppCompatActivity {
+    //This class allow the user to create an account
+
     Intent intent;
     EditText email_entry, password_entry, name_entry;
     String email , password, name, url;
@@ -39,7 +41,6 @@ public class Signup extends AppCompatActivity {
             String password = params[2];
             String str_url = params[3];
 
-            Log.i("Entries", name+password+email+str_url);
             try {
                 // Creating a new URL connection with PHP.
                 URL url = new URL(str_url);
@@ -57,24 +58,23 @@ public class Signup extends AppCompatActivity {
                         + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&"
                         + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
-                Log.i("Data",post_data);
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
+                //Once the user has signed up he has to login
                 intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
 
-                Log.i("inputStream",is.toString());
                 urlConnection.disconnect();
 
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                Log.i("exeDOin",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("exeIO",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
@@ -93,7 +93,7 @@ public class Signup extends AppCompatActivity {
     }
 
     public void signup (View view){
-
+        // Directs to the api and take care of all the wrong inputs
 
         email = email_entry.getText().toString();
         password = password_entry.getText().toString();
@@ -120,7 +120,7 @@ public class Signup extends AppCompatActivity {
         else if(name.isEmpty()){
             Toast.makeText(this,"Please enter the name correctly",Toast.LENGTH_LONG).show();
         }
-        else {
+        else {// if all the entries are correct we redirect it to the api to add him to our databases
             url = "http://"+ip+"/MobileFinalProject/BackEnd/signup_api.php";
             post = new PostRequestSignUp(); // Initialize a PostRequest object everytime the user clicks the button.
             post.execute(name,email,password,url);
@@ -128,7 +128,7 @@ public class Signup extends AppCompatActivity {
         }
     }
     public void login (View view){
-
+        // If he decide he have an account he can return to the login
         intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
     }
