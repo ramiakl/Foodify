@@ -31,6 +31,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+// Displays all the item available in the shopping cart
 
 public class Cart extends AppCompatActivity {
 
@@ -88,7 +89,7 @@ public class Cart extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Log.i("exeDOin", e.getMessage());
+                e.printStackTrace();
                 return null;
             }
             return result;
@@ -97,9 +98,7 @@ public class Cart extends AppCompatActivity {
         protected void onPostExecute(String s) {
             // This method converts the JSON Object received into a String.
             super.onPostExecute(s);
-            try{
-
-                Log.i("String", s);
+            try{// The string received from the database is of type json array
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
@@ -114,26 +113,25 @@ public class Cart extends AppCompatActivity {
                         listdata.add(jsonArray.get(i));
                     }
                 }
-
+                // initializing the arrays
                 food = new String[jsonArray.length()];
                 weight = new String[jsonArray.length()];
                 item_price = new String[jsonArray.length()];
 
-                for(int i=0; i<listdata.size();i++){
+                for(int i=0; i<listdata.size();i++){ // filling them with the data from the database
                     first = (JSONObject) jsonArray.get(i);
                     food[i] = first.getString("item_name");
                     weight[i] = first.getString("weight");
                     item_price[i]= first.getString("price");
                 }
 
-                Log.i("Result", Arrays.toString(food));
-
+                // linking them to the grid adapter
                 gridAdapter = new GridPantryCart(getApplicationContext(),food,weight,item_price);
                 binding.shoppingList.setAdapter(gridAdapter);
 
 
             }catch(Exception e){
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -159,27 +157,25 @@ public class Cart extends AppCompatActivity {
 
     public void tocookbook(View view){
         intent = new Intent(getApplicationContext(), Cookbook.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void topantry(View view){
         intent = new Intent(getApplicationContext(), MainActivity.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
     public void addCart(View view){
         intent = new Intent(getApplicationContext(), AddToCart.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
     public void deleteAll(View view){
+        // delete all the elements in the shopping cart
+        // it is used if the user have purchased of the items
 
         url = "http://"+ip+"/MobileFinalProject/BackEnd/delete_cart.php";
         DownloadTaskDelete task = new DownloadTaskDelete();
@@ -203,7 +199,7 @@ public class Cart extends AppCompatActivity {
 
 
             } catch (Exception e) {
-                Log.i("exeDOin", e.getMessage());
+                e.printStackTrace();
                 return null;
             }
             return null;
@@ -211,7 +207,7 @@ public class Cart extends AppCompatActivity {
     }
 
     public class PostRequest extends AsyncTask<String, Void, String> {
-
+    // used to delete only one item
         @Override
         protected String doInBackground(String... params) {
             //The method take String parameters and send data to the received url.
@@ -234,20 +230,19 @@ public class Cart extends AppCompatActivity {
 
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
-                Log.i("Post",post_data);
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
                 out.close();
 
                 InputStream is = urlConnection.getInputStream();
-                Log.i("inputStream",is.toString());
                 urlConnection.disconnect();
 
+                Toast.makeText(getApplicationContext(),name+" was deleted!",Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
-                Log.i("Mals",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("Ioexp",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
@@ -255,15 +250,13 @@ public class Cart extends AppCompatActivity {
     }
 
     public void deleteApi(View view){
-
+    // delete the selected item by the user
         String item_delete = delete.getText().toString();
 
         url = "http://"+ip+"/MobileFinalProject/BackEnd/delete_item_cart.php";
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);
-
-        Toast.makeText(this,item_delete+" was deleted!",Toast.LENGTH_SHORT).show();
-
+        
     }
 }
