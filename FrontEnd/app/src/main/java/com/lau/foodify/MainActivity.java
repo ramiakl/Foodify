@@ -33,10 +33,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+// This class displays all the items present in the panntry
 
     Intent intent;
     EditText delete;
-    ImageView delete_icon;
     String url, user_id;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
             user_id = shared.getString("user_id","");
 
             try {
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Log.i("exeDOin", e.getMessage());
+                e.printStackTrace();
                 return null;
             }
             return result;
@@ -99,13 +97,11 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             try{
 
-                Log.i("String", s);
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
                 JSONObject first = (JSONObject) jsonArray.get(0);
                 String name = first.getString("item_name");
-                Log.i("Name",name);
 
                 //Checking whether the JSON array has some value or not
                 if (jsonArray != null) {
@@ -131,13 +127,12 @@ public class MainActivity extends AppCompatActivity {
                     location[i]= first.getString("location");
                     date[i]= "Exp: " + first.getString("date_of_expiration");
                 }
-                Log.i("Result", Arrays.toString(food));
 
                 gridAdapter = new GridAdapterPantry(getApplicationContext(),food,weight,location,date);
                 binding.list.setAdapter(gridAdapter);
 
         }catch(Exception e){
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -160,28 +155,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void tocookbook(View view){
         intent = new Intent(getApplicationContext(), Cookbook.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
     public void addItem(View vew){
         intent = new Intent(getApplicationContext(), AddToPantry.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
 
     public class PostRequest extends AsyncTask<String, Void, String> {
+    // used to delete a selected item
 
         @Override
         protected String doInBackground(String... params) {
@@ -205,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // Setting the variables to be sent to the URL
                 String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
-                Log.i("Post",post_data);
                 br.write(post_data); //Writing and sending data.
                 br.flush();
                 br.close();
@@ -216,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
                 urlConnection.disconnect();
 
             } catch (MalformedURLException e) {
-                Log.i("Mals",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("Ioexp",e.getMessage());
+                e.printStackTrace();
             }
             return null;
         }
