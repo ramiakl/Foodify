@@ -257,6 +257,6 @@ public class Cart extends AppCompatActivity {
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);
-        
+
     }
 }

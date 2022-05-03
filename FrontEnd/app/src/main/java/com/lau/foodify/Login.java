@@ -29,6 +29,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class Login extends AppCompatActivity {
+// This class is responsible of logging in the user
 
     EditText email_entry, password_entry;
     String name , password, url, user_id;
@@ -38,7 +39,7 @@ public class Login extends AppCompatActivity {
     SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {
-
+        // Post the name and password to the api to check if it is avaialable
         @Override
         protected String doInBackground(String... params) {
             //The method take String parameters and send data to the received url.
@@ -83,9 +84,9 @@ public class Login extends AppCompatActivity {
 
                 //Catching exceptions
             } catch (MalformedURLException e) {
-                Log.i("mal",e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.i("exe",e.getMessage());
+                e.printStackTrace();
             }
             return result;
         }
@@ -95,22 +96,20 @@ public class Login extends AppCompatActivity {
             super.onPostExecute(s);
             try {
 
-                Log.i("String", s);
                 if (s.equalsIgnoreCase("NO")) {
                     Toast.makeText(getApplicationContext(), "User does not exist please sign up", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else{// go to the next page and save the user id in the local database
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     JSONArray jsonArray = new JSONArray(s);
                     JSONObject obj = (JSONObject) jsonArray.get(0);
                     user_id = obj.getString("user_id");
-                    intent.putExtra("user_id",user_id);
                     shared.edit().putString("user_id",user_id).commit();
                     startActivity(intent);
                 }
 
             }catch(Exception e){
-                    Log.i("exeOnPost", e.getMessage());
+                    e.printStackTrace();
             }
         }
 
@@ -136,22 +135,19 @@ public class Login extends AppCompatActivity {
     }
 
     public void login (View view){
+    // when the login is pressed it checks all the inputs
 
         name = email_entry.getText().toString();
         password = password_entry.getText().toString();
 
 
         if(name.isEmpty() && password.isEmpty()){
-            //error_password.setVisibility(View.VISIBLE);
-            //error_email.setVisibility(View.VISIBLE);
             Toast.makeText(this,"Please enter the password and the email correctly",Toast.LENGTH_LONG).show();
         }
         else if (name.equalsIgnoreCase("")){
-            //error_email.setVisibility(View.VISIBLE);
             Toast.makeText(this,"Please enter the email correctly",Toast.LENGTH_LONG).show();
         }
         else if(password.isEmpty()){
-            //error_password.setVisibility(View.VISIBLE);
             Toast.makeText(this,"Please enter the password correctly",Toast.LENGTH_LONG).show();
         }
         else {
