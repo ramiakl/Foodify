@@ -8,19 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// This is responsible of creating a grid adapter for the cart
 public class GridPantryCart extends BaseAdapter {
     Context context;
     String[] food;
     String[] weight;
-    String[] date;
+    String[] price;
 
     LayoutInflater inflater;
 
-    public GridPantryCart(Context context, String[] food, String[] weight,String[] date) {
+    public GridPantryCart(Context context, String[] food, String[] weight,String[] price) {
         this.context = context;
         this.food = food;
         this.weight = weight;
-        this.date = date;
+        this.price = price;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class GridPantryCart extends BaseAdapter {
 
         food_txt.setText(food[i]);
         weight_txt.setText(weight[i]);
-        exp_txt.setText("price: " + date[i]);
+        exp_txt.setText("Price: " + price[i]);
         location_txt.setVisibility(View.GONE);
 
         return view;
