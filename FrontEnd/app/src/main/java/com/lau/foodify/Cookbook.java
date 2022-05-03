@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Cookbook extends AppCompatActivity {
+// This class displays the recipes available in the database
 
     ActivityMainBinding binding;
     String[] name, time;
@@ -84,7 +85,7 @@ public class Cookbook extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Log.i("exeDOin", e.getMessage());
+                e.printStackTrace();
                 return null;
             }
             return result;
@@ -95,7 +96,6 @@ public class Cookbook extends AppCompatActivity {
             super.onPostExecute(s);
             try{
 
-                Log.i("String", s);
                 JSONArray jsonArray = new JSONArray(s);
 
                 ArrayList<Object> listdata = new ArrayList<Object>();
@@ -121,13 +121,10 @@ public class Cookbook extends AppCompatActivity {
                     images[i] = Integer.parseInt(obj.getString("image"));
                 }
 
-                Log.i("images",Arrays.toString(images));
-
-
                 gridAdapter = new GridAdapter(getApplicationContext(),name,time,images);
                 binding.gridView.setAdapter(gridAdapter);
 
-                binding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                binding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {// if the item is clicked we display the selected recipe
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         chosen_recipe = gridAdapter.getItem(i);
@@ -138,7 +135,7 @@ public class Cookbook extends AppCompatActivity {
                 });
 
             }catch(Exception e){
-                Log.i("exeOnPost",e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -163,17 +160,14 @@ public class Cookbook extends AppCompatActivity {
 
     public void topantry(View view){
         intent = new Intent(getApplicationContext(), MainActivity.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void tocart(View view){
         intent = new Intent(getApplicationContext(), Cart.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
     public void toadd(View view){
         intent = new Intent(getApplicationContext(), Add.class);
-        //intent.putExtra("user_id",user_id);
         startActivity(intent);
     }
 
