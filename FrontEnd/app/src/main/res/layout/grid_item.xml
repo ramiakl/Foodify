@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="@+id/background"
         app:layout_constraintTop_toTopOf="@+id/background"
         app:layout_constraintVertical_bias="0.32999998"
-        tools:srcCompat="@drawable/burger" />
+        tools:srcCompat="@drawable/salad" />
 
     <TextView
         android:id="@+id/item_name"

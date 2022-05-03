@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// This is responsible of creating a grid adapter for the pantry
 public class GridAdapterPantry extends BaseAdapter {
     Context context;
     String[] food;

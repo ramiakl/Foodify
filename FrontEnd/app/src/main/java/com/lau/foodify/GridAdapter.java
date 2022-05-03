@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// This is responsible of creating a grid adapter for the cookbook
 public class GridAdapter extends BaseAdapter {
     Context context;
     String[] recipe;
