@@ -25,7 +25,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-// Add a receipe to the database
+// Add a recipe to the database
 
 public class Add extends AppCompatActivity {
 
@@ -35,6 +35,7 @@ public class Add extends AppCompatActivity {
     Spinner spinner;
     int image;
     String ip =  "192.168.0.101";
+    //String ip = "192.168.16.103";
 
     SharedPreferences shared;
 

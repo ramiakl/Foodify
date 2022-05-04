@@ -28,6 +28,7 @@ public class AddToPantry extends AppCompatActivity {
     String iname,loc,wei,time,url, user_id;
     Intent intent;
     String ip =  "192.168.0.101";
+    //String ip = "192.168.16.103";
     SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {

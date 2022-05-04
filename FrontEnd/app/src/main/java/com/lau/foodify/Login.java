@@ -36,6 +36,8 @@ public class Login extends AppCompatActivity {
     PostRequest post;
     String result = "";
     String ip =  "192.168.0.101";
+    //String ip = "192.168.16.103";
+
     SharedPreferences shared;
 
     public class PostRequest extends AsyncTask<String, Void, String> {

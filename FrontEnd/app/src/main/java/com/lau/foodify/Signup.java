@@ -29,6 +29,7 @@ public class Signup extends AppCompatActivity {
     String email , password, name, url;
     PostRequestSignUp post;
     String ip =  "192.168.0.101";
+    //String ip = "192.168.16.103";
 
     public class PostRequestSignUp extends AsyncTask<String, Void, String> {
 

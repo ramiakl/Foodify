@@ -87,6 +87,7 @@
         android:ems="10"
         android:hint="Please add an ingredient"
         android:inputType="textPersonName"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/addBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.183"

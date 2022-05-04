@@ -42,6 +42,7 @@ public class Cart extends AppCompatActivity {
     GridPantryCart gridAdapter;
     Intent intent;
     String ip =  "192.168.0.101";
+    //String ip = "192.168.16.103";
 
     SharedPreferences shared;
 
