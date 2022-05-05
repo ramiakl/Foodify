@@ -239,7 +239,6 @@ public class Cart extends AppCompatActivity {
                 InputStream is = urlConnection.getInputStream();
                 urlConnection.disconnect();
 
-                Toast.makeText(getApplicationContext(),name+" was deleted!",Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -258,6 +257,7 @@ public class Cart extends AppCompatActivity {
 
         PostRequest post = new PostRequest();
         post.execute(item_delete,url);
+        Toast.makeText(getApplicationContext(),item_delete+" was deleted!",Toast.LENGTH_SHORT).show();
 
     }
 }
