@@ -55,9 +55,7 @@ public class Cart extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection http; //Initializing the url connection object
-            //intent = getIntent();
-            //user_id = intent.getStringExtra("user_id");
-            Log.i("id",user_id);
+
             try {
                 // Creating a new URL connection with PHP.
                 url = new URL(urls[0]);
