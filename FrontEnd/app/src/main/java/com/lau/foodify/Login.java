@@ -35,8 +35,8 @@ public class Login extends AppCompatActivity {
     String name , password, url, user_id;
     PostRequest post;
     String result = "";
-    String ip =  "192.168.0.101";
-    //String ip = "192.168.16.103";
+    //String ip =  "192.168.0.101";
+    String ip = "172.20.10.5";
 
     SharedPreferences shared;
 

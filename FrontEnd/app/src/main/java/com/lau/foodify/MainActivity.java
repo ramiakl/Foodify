@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     String url, user_id;
     String[] food,weight,location,date;
     GridAdapterPantry gridAdapter;
-    String ip =  "192.168.0.101";
-    //String ip = "192.168.16.103";
+    //String ip =  "192.168.0.101";
+    String ip = "172.20.10.5";
 
     SharedPreferences shared;
 

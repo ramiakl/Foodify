@@ -34,8 +34,8 @@ public class Add extends AppCompatActivity {
     Intent intent;
     Spinner spinner;
     int image;
-    String ip =  "192.168.0.101";
-    //String ip = "192.168.16.103";
+    //String ip =  "192.168.0.101";
+    String ip = "172.20.10.5";
 
     SharedPreferences shared;
 

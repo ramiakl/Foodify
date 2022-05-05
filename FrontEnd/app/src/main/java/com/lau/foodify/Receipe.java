@@ -36,8 +36,8 @@ public class Receipe extends AppCompatActivity {
 
     TextView rec, duration, cal, ingredients, instructions ;
     String name, time, calories,ing ,inst, url, user_id;
-    String ip =  "192.168.0.101";// the ip adress for the api
-   //String ip = "192.168.16.103";
+    //String ip =  "192.168.0.101";// the ip adress for the api
+    String ip = "172.20.10.5";
 
     SharedPreferences shared;
 

@@ -40,8 +40,8 @@ public class Cookbook extends AppCompatActivity {
     Intent intent;
     String chosen_recipe, user_id;
     int[] images;
-    String ip =  "192.168.0.101";
-    //String ip = "192.168.16.103";
+    //String ip =  "192.168.0.101";
+    String ip = "172.20.10.5";
 
     SharedPreferences shared;
 
